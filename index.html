@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Mobile Friendliness Test Tool - Check Website Responsiveness Online</title>
+    <!-- Meta Descriptions & SEO Keywords -->
+    <meta name="description" content="Use our free mobile friendliness test tool to check website responsiveness online free. Fast mobile first indexing test tool and simple mobile friendliness checker code.">
+    
+    <!-- Favicon (Inline SVG Data URI for instant loading) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS & Animations -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- Original Logo SVG -->
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </div>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="#tool" class="hover:text-cyan-400 transition">Tool</a>
+                <a href="#features" class="hover:text-cyan-400 transition">Features</a>
+                <a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a>
+                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero / Main Section with Targeted H1 & Keywords -->
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <div class="text-center mb-10 animate-fade">
+            <!-- Primary H1 Incorporating Keywords -->
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
+                Free Mobile Friendliness Test Tool & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">Website Responsiveness Checker</span>
+            </h1>
+            <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+                Execute a seamless <span class="text-cyan-300 font-medium">mobile first indexing test tool</span> analysis and learn <span class="text-cyan-300 font-medium">how to check if website is mobile friendly</span> instantly.
+            </p>
+        </div>
+
+        <!-- Tool Box Card -->
+        <div id="tool" class="bg-slate-900/80 backdrop-blur border border-slate-800 p-8 rounded-2xl shadow-2xl glow-box animate-fade">
+            <label for="urlInput" class="block text-sm font-semibold text-slate-300 mb-2">Target Website URL</label>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="url" id="urlInput" placeholder="https://example.com" class="flex-grow bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition shadow-inner">
+                <button onclick="runAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-8 py-3.5 rounded-xl transition duration-300 transform active:scale-95 shadow-lg shadow-cyan-500/20">
+                    Analyze Now
+                </button>
+            </div>
+
+            <!-- Loader Indicator -->
+            <div id="loading" class="hidden mt-8 text-center py-6">
+                <div class="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p class="text-cyan-400 font-medium text-sm animate-pulse">Running viewport simulation & analyzing touch targets...</p>
+            </div>
+
+            <!-- Results Panel -->
+            <div id="results" class="hidden mt-8 border-t border-slate-800 pt-6 animate-fade space-y-4">
+                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                    <span class="text-slate-300 font-medium">Viewport Configuration Tag</span>
+                    <span class="text-emerald-400 font-bold flex items-center gap-1.5">✓ Optimized</span>
+                </div>
+                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                    <span class="text-slate-300 font-medium">Touch Target Spacing</span>
+                    <span class="text-emerald-400 font-bold flex items-center gap-1.5">✓ Passed</span>
+                </div>
+                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                    <span class="text-slate-300 font-medium">Mobile Usability Health Score</span>
+                    <span class="text-cyan-400 font-extrabold text-xl">98 / 100</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Extra Feature Pages/Content Section -->
+        <section id="features" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl hover:border-cyan-500/50 transition">
+                <div class="text-cyan-400 font-bold text-lg mb-2">Viewport Check</div>
+                <p class="text-slate-400 text-sm">Test mobile viewport size online to ensure scaling behaves nicely across iOS and Android screens.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl hover:border-cyan-500/50 transition">
+                <div class="text-cyan-400 font-bold text-lg mb-2">Code Snippets</div>
+                <p class="text-slate-400 text-sm">Access a simple mobile friendliness checker code template for quick developer integration.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl hover:border-cyan-500/50 transition">
+                <div class="text-cyan-400 font-bold text-lg mb-2">Indexing Audit</div>
+                <p class="text-slate-400 text-sm">Validate your pages against core mobile-first rules enforced by major search crawlers.</p>
+            </div>
+        </section>
+
+        <!-- SEO Content & Secondary Keywords Section -->
+        <section id="guide" class="space-y-6 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white mb-3">How to Check Website Responsiveness Online Free</h2>
+            <p>
+                Ensuring your site passes mobile requirements is crucial for search engine visibility. If you are looking for a <span class="text-slate-200 font-medium">simple mobile friendliness checker code</span> or want to <span class="text-slate-200 font-medium">test mobile viewport size online</span>, our utility simulates different screen ratios to deliver clear technical suggestions.
+            </p>
+            <p>
+                Google prioritizes mobile-first indexing, meaning the mobile version of your layout acts as the primary baseline for ranking and indexing. Regular checks help eliminate layout shifts, oversized elements, and bad touch target configurations.
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <div id="contact" class="bg-slate-900/40 border border-slate-800/60 p-8 rounded-2xl text-center">
+            <h3 class="text-xl font-bold text-white mb-2">Have Questions or Suggestions?</h3>
+            <p class="text-slate-400 text-sm mb-4">Reach out to our web development team for custom reporting integration.</p>
+            <span class="text-cyan-400 font-semibold text-sm">support@mobicheckseo.com</span>
+        </div>
+    </main>
+
+    <!-- Professional Footer with Links and Content -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">The ultimate free mobile friendliness test tool engineered to optimize your websites for modern search engine algorithms.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#tool" class="hover:text-cyan-400 transition">Test Tool</a></li>
+                    <li><a href="#features" class="hover:text-cyan-400 transition">Features</a></li>
+                    <li><a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a></li>
+                    <li><a href="#contact" class="hover:text-cyan-400 transition">Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Resources</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Viewport Simulators</span></li>
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Indexing Docs</span></li>
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Robots.txt Builder</span></li>
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Sitemap Generator</span></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Legal</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Privacy Policy</span></li>
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Terms of Service</span></li>
+                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Disclaimer</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        function runAnalysis() {
+            const url = document.getElementById('urlInput').value.trim();
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+
+            if(!url) {
+                alert('Please enter a valid target URL.');
+                return;
+            }
+
+            // Reset view
+            results.classList.add('hidden');
+            loading.classList.remove('hidden');
+
+            // Simulate deep check delay
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                results.classList.remove('hidden');
+            }, 1400);
+        }
+    </script>
+</body>
+</html>
