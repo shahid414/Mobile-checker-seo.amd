@@ -1,1 +1,1 @@
-{"cleanUrls":true}
+{"cleanUrls":true,"functions":{"api/render.js":{"maxDuration":10,"memory":1024}}}

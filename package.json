@@ -1,0 +1,1 @@
+{"dependencies":{"@sparticuz/chromium":"138.0.2","playwright-core":"1.49.1"},"description":"MobiCheck SEO — mobile friendliness checker (static HTML check + real Chromium render)","engines":{"node":">=18"},"name":"mobile-checker-seo","private":true,"version":"1.0.0"}

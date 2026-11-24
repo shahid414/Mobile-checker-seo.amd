@@ -142,7 +142,7 @@
                 <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Pinch-to-zoom · 10 pts</span><p class="text-[#7A7A7A] mt-1">Can visitors zoom in, or is zoom locked by the viewport tag?</p></div>
                 <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Title &amp; H1 · 10 pts</span><p class="text-[#7A7A7A] mt-1">Does the page have a title tag and one H1 heading?</p></div>
             </div>
-            <p class="text-[#7A7A7A] text-xs leading-relaxed">Tap target size and layout shift (CLS) can only be measured while a page renders in a real browser, so this static check marks them NOT TESTED instead of guessing. Google Lighthouse covers them when it is available.</p>
+            <p class="text-[#7A7A7A] text-xs leading-relaxed">After the static result, a real-browser check (Chromium, 390px phone screen) measures actual overflow, tap targets, font size and layout shift — rows marked RENDERED. Google Lighthouse (PageSpeed Insights) now only covers performance and CLS, not tap targets or font sizes.</p>
         </section>
 
         <!-- More Free Tools -->
@@ -254,6 +254,7 @@
             var color = check.status === 'pass' ? 'text-emerald-400' : check.status === 'warn' ? 'text-amber-400' : check.status === 'not-tested' ? 'text-[#A6A4A6]' : 'text-red-400';
             var statusText = check.status === 'not-tested' ? 'NOT TESTED' : check.status.toUpperCase();
             var weightText = check.weight ? ' · ' + check.weight + ' pts' : ' · not scored';
+            var renderedTag = check.rendered ? ' <span class="text-[#D9083C] text-[10px] font-bold tracking-wide">· RENDERED</span>' : '';
             var findingsHtml = '';
             if (check.findings && check.findings.length) {
                 var shown = check.findings.slice(0, 5);
@@ -263,12 +264,90 @@
             }
             return '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]">' +
                 '<div class="flex items-center justify-between gap-3">' +
-                '<span class="text-[#D4D4D4] font-medium">' + escapeHtml(check.label) + '<span class="text-[#7A7A7A] text-xs">' + weightText + '</span></span>' +
+                '<span class="text-[#D4D4D4] font-medium">' + escapeHtml(check.label) + renderedTag + '<span class="text-[#7A7A7A] text-xs">' + weightText + '</span></span>' +
                 '<span class="' + color + ' font-bold flex items-center gap-1.5 shrink-0">' + icon + ' ' + statusText + '</span>' +
                 '</div>' +
                 '<p class="text-[#7A7A7A] text-sm mt-1">' + escapeHtml(check.detail) + '</p>' +
                 findingsHtml +
                 '</div>';
+        }
+
+        // Real-browser results (from /api/render) replace the static guesses
+        // for overflow, font size, tap targets and CLS, then the score and
+        // verdict are recomputed with the same weights.
+        var WEIGHTS = { viewport: 30, zoom: 10, media: 20, font: 15, fixed: 15, seo: 10 };
+        var renderState = 'idle';
+        var analysisSeq = 0;
+
+        function mergeRendered(data, r) {
+            var checks = data.checks.slice();
+            function setCheck(id, status, detail, findings) {
+                for (var i = 0; i < checks.length; i++) {
+                    if (checks[i].id === id) {
+                        checks[i] = { id: id, label: checks[i].label, status: status, detail: detail, findings: findings || [], weight: checks[i].weight || WEIGHTS[id] || 0, rendered: true };
+                    }
+                }
+            }
+            if (r.hasOverflow) {
+                var of = r.contentOverflow.map(function (o) {
+                    return o.sel + (o.text ? ' "' + o.text + '"' : '') + ' — ' + o.width + 'px wide, ' + o.overflowPx + 'px past the ' + r.viewportWidth + 'px viewport';
+                });
+                if (r.contentOverflowCount > r.contentOverflow.length) of.push('+ ' + (r.contentOverflowCount - r.contentOverflow.length) + ' more overflowing elements');
+                of.push('Fix: make the overflowing element fit the screen — smaller text, max-width: 100%, or let it wrap/stack on phones.');
+                setCheck('fixed', 'fail', 'Rendered page is ' + r.bodyScrollWidth + 'px wide on a ' + r.viewportWidth + 'px phone screen (' + r.overflowPx + 'px too wide).', of);
+            } else {
+                var ofOk = [];
+                if (r.offCanvasCount > 0) ofOk.push(r.offCanvasCount + ' off-canvas element' + (r.offCanvasCount === 1 ? '' : 's') + ' (e.g. a closed mobile menu) sit outside the viewport — normal, not an overflow.');
+                setCheck('fixed', 'pass', 'Rendered page fits the ' + r.viewportWidth + 'px phone screen — no content sticks out.', ofOk);
+            }
+            if (r.smallestFont !== null && r.smallestFont !== undefined) {
+                if (r.smallestFont < 12) setCheck('font', 'fail', 'Smallest rendered text is ' + r.smallestFont + 'px — too small to read on a phone without zooming.', ['Smallest text: ' + r.smallestFont + 'px — ' + r.smallestFontEl, 'Fix: increase it to at least 16px.']);
+                else if (r.smallestFont < 16) setCheck('font', 'warn', 'Smallest rendered text is ' + r.smallestFont + 'px — readable, but 16px or larger is safer on phones.', ['Smallest text: ' + r.smallestFont + 'px — ' + r.smallestFontEl]);
+                else setCheck('font', 'pass', 'Smallest rendered text is ' + r.smallestFont + 'px — readable without zooming.', []);
+            }
+            if (r.smallTapCount === 0) {
+                setCheck('taps', 'pass', 'All visible tap targets are at least 48×48px — easy to tap on a phone.', []);
+            } else {
+                var tf = r.smallTaps.map(function (t) { return t.sel + ' (' + t.w + '×' + t.h + 'px)' + (t.text ? ' "' + t.text + '"' : ''); });
+                if (r.smallTapCount > r.smallTaps.length) tf.push('+ ' + (r.smallTapCount - r.smallTaps.length) + ' more small tap targets');
+                tf.push('Fix: make tap targets at least 48×48px with space between them.');
+                setCheck('taps', r.smallTapCount > 5 ? 'fail' : 'warn', r.smallTapCount + ' visible tap target' + (r.smallTapCount === 1 ? '' : 's') + ' smaller than 48×48px.', tf);
+            }
+            if (r.cls !== null && r.cls !== undefined) {
+                if (r.cls < 0.1) setCheck('cls', 'pass', 'Layout shift (CLS) is ' + r.cls.toFixed(2) + ' — the page stays stable while loading.', []);
+                else if (r.cls <= 0.25) setCheck('cls', 'warn', 'Layout shift (CLS) is ' + r.cls.toFixed(2) + ' — some content moves while the page loads.', ['Fix: give images and embeds width/height so the layout does not jump.']);
+                else setCheck('cls', 'fail', 'Layout shift (CLS) is ' + r.cls.toFixed(2) + ' — content jumps around while the page loads.', ['Fix: give images and embeds width/height so the layout does not jump.']);
+            }
+            var score = 0;
+            checks.forEach(function (c) { var w = WEIGHTS[c.id] || 0; if (c.status === 'pass') score += w; else if (c.status === 'warn') score += w / 2; });
+            score = Math.round(score);
+            var viewport = null;
+            checks.forEach(function (c) { if (c.id === 'viewport') viewport = c; });
+            var verdict = (viewport && viewport.status === 'fail') || score < 50 ? 'Not mobile friendly' : score >= 80 ? 'Mobile friendly' : 'Needs work';
+            var out = {};
+            for (var k in data) out[k] = data[k];
+            out.checks = checks;
+            out.score = score;
+            out.verdict = verdict;
+            out.method = 'static-html + rendered';
+            out.rendered = { available: true, loadMs: r.loadMs, overflowPx: r.overflowPx, bodyScrollWidth: r.bodyScrollWidth, viewportWidth: r.viewportWidth };
+            return out;
+        }
+
+        async function runRenderedTest(url, staticData, seq) {
+            renderState = 'pending';
+            try {
+                var res = await fetch('/api/render?url=' + encodeURIComponent(url));
+                var r = await res.json();
+                if (seq !== analysisSeq) return; // a newer test started; ignore this one
+                if (!res.ok || !r.available) throw new Error((r && r.error) || 'Rendered check unavailable');
+                renderState = 'done';
+                renderResults(mergeRendered(staticData, r));
+            } catch (err) {
+                if (seq !== analysisSeq) return;
+                renderState = 'unavailable';
+                renderResults(staticData);
+            }
         }
 
         function renderResults(data) {
@@ -293,9 +372,22 @@
                 seo: 'Add a descriptive <title> and one <h1> heading to the page.'
             };
             var recs = data.checks.filter(function (c) { return c.status === 'fail' || c.status === 'warn'; }).map(function (c) {
-                return '<li><span class="text-white font-medium">' + escapeHtml(c.label) + ':</span> ' + escapeHtml(FIXES[c.id] || c.detail) + '</li>';
+                var fix = FIXES[c.id] || c.detail;
+                if (c.rendered && c.findings) {
+                    for (var i = c.findings.length - 1; i >= 0; i--) {
+                        if (c.findings[i].indexOf('Fix:') === 0) { fix = c.findings[i].slice(5).trim(); break; }
+                    }
+                }
+                return '<li><span class="text-white font-medium">' + escapeHtml(c.label) + ':</span> ' + escapeHtml(fix) + '</li>';
             }).join('');
             var recsHtml = recs ? '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-amber-500/30"><div class="text-amber-400 font-bold mb-2">Recommendations</div><ul class="text-[#A6A4A6] text-sm space-y-1.5 list-disc pl-5">' + recs + '</ul></div>' : '';
+            var methodNote = data.rendered
+                ? 'Real-browser check (Chromium, ' + data.rendered.viewportWidth + 'px viewport, ' + (data.rendered.loadMs / 1000).toFixed(1) + 's) measured overflow, tap targets, font size and CLS — rows marked RENDERED above replace the static guesses.'
+                : renderState === 'pending'
+                    ? 'Real-browser check chal raha hai… (overflow, tap targets, font size aur CLS measure ho rahe hain)'
+                    : renderState === 'unavailable'
+                        ? 'Real-browser check available nahi tha — ye static result hai. Tap targets, CLS aur rendered overflow need a real browser render.'
+                        : 'Static HTML check — it reads the page code as a phone browser would; it does not run JavaScript.';
             results.innerHTML =
                 '<div class="flex items-center justify-between gap-3 p-4 rounded-xl border ' + verdictColor + '">' +
                 '<span class="font-bold text-lg">' + escapeHtml(data.verdict) + '</span>' +
@@ -307,7 +399,7 @@
                 '<p class="text-[#7A7A7A] text-xs leading-relaxed">Tested live: ' + escapeHtml(data.url) +
                 ' · HTTP ' + data.status + ' · ' + (data.loadMs / 1000).toFixed(1) + 's to fetch · ' + data.htmlKb + ' KB HTML · ' +
                 data.counts.images + ' images, ' + data.counts.scripts + ' scripts, ' + data.counts.links + ' links. ' +
-                'Score = sum of passed checks (each row shows its weight; warn = half). Static HTML check — it reads the page code as a phone browser would; it does not run JavaScript. Tap targets and layout shift need a real browser render and are marked NOT TESTED.</p>';
+                'Score = sum of passed checks (each row shows its weight; warn = half). ' + methodNote + '</p>';
             document.getElementById('resultsCard').classList.remove('hidden');
             results.classList.remove('hidden');
         }
@@ -438,11 +530,14 @@
             document.getElementById('resultsCard').classList.add('hidden');
             results.innerHTML = '';
             loading.classList.remove('hidden');
+            var seq = ++analysisSeq;
+            renderState = 'idle';
             try {
                 var res = await fetch('/api/check?url=' + encodeURIComponent(url));
                 var data = await res.json();
                 if (!res.ok) throw new Error(data.error || 'The test failed. Please try again.');
                 renderResults(data);
+                runRenderedTest(url, data, seq);
                 if (PSI_API_KEY && PSI_API_KEY !== 'YOUR_PSI_API_KEY') { runPsiTest(url); }
             } catch (err) {
                 showError(err.message || 'The test failed. Please try again.');

@@ -127,6 +127,16 @@ function buildChecks(html, mobileFinalUrl, desktopFinalUrl) {
 
   // 4. Font sizes (weight 15)
   const pxSizes = [...html.matchAll(/font-size\s*:\s*([0-9]+(?:\.[0-9]+)?)\s*px/gi)].map((m) => parseFloat(m[1]));
+  // Tailwind arbitrary sizes (text-[10px]) and utilities (text-xs = 12px,
+  // text-sm = 14px) — the page's real font sizes often live in class names,
+  // not in font-size declarations, because the CSS is compiled in the browser.
+  const twPxSizes = [...html.matchAll(/text-\[([0-9]+(?:\.[0-9]+)?)px\]/gi)].map((m) => parseFloat(m[1]));
+  const twPxCounts = valueCounts(html, /text-\[([0-9]+(?:\.[0-9]+)?)px\]/gi);
+  const twUtilSizes = [];
+  for (const [cls, size] of [['text-xs', 12], ['text-sm', 14]]) {
+    const c = countMatches(html, new RegExp(cls + '(?=[\\s"\'])', 'gi'));
+    if (c > 0) twUtilSizes.push({ cls, size, count: c });
+  }
   // Distribution of the small sizes, so the result names each one, not just the smallest.
   const smallCounts = valueCounts(html, /font-size\s*:\s*([0-9]+(?:\.[0-9]+)?)\s*px/gi);
   const smallList = Object.keys(smallCounts)
@@ -138,10 +148,18 @@ function buildChecks(html, mobileFinalUrl, desktopFinalUrl) {
   const fontFindings = [];
   if (smallList.length > 0) fontFindings.push('Small sizes found: ' + smallList.join(', '));
   for (const c of smallContexts) fontFindings.push(c);
-  if (pxSizes.length === 0) {
+  const twSmallList = Object.keys(twPxCounts)
+    .map((k) => parseFloat(k))
+    .filter((n) => n < 16)
+    .sort((a, b) => a - b)
+    .map((n) => 'text-[' + n + 'px] ×' + twPxCounts[String(n)]);
+  if (twSmallList.length > 0) fontFindings.push('Small Tailwind sizes found: ' + twSmallList.join(', '));
+  for (const u of twUtilSizes) fontFindings.push(u.cls + ' (' + u.size + 'px) class used ' + u.count + '×');
+  const allFontSizes = pxSizes.concat(twPxSizes, twUtilSizes.map((u) => u.size));
+  if (allFontSizes.length === 0) {
     checks.push({ id: 'font', label: 'Font size', status: 'pass', detail: 'No tiny fixed pixel font sizes found in the page code (sizes use rem/em or are set elsewhere).' });
   } else {
-    const smallest = Math.min(...pxSizes);
+    const smallest = Math.min(...allFontSizes);
     if (smallest < 12) {
       checks.push({ id: 'font', label: 'Font size', status: 'fail', detail: 'Text as small as ' + smallest + 'px found — too small to read on a phone without zooming.', findings: fontFindings });
     } else if (smallest < 16) {
@@ -157,15 +175,26 @@ function buildChecks(html, mobileFinalUrl, desktopFinalUrl) {
   // and ignore max-width (a cap, not a forced width — it is responsive-safe).
   const declHtml = html.replace(/@media[^{]+\{/gi, '@media{');
   const wideMatches = [...declHtml.matchAll(/(?:^|[^-])((?:width|min-width)\s*:\s*(?:9[0-9]{2}|1[0-9]{3,})\s*px)/gi)];
+  // Tailwind arbitrary widths (w-[1200px], min-w-[900px]) — same 900px rule,
+  // read from class names instead of CSS declarations.
+  const twWide = [...html.matchAll(/[\s"'](?:w|min-w)-\[((?:9[0-9]{2}|1[0-9]{3,}))px\]/gi)].map((m) => m[0].trim());
+  // Multi-column grids with no mobile breakpoint (bare grid-cols-3/4, not
+  // sm:/md: prefixed) squeeze or overflow on a 390px screen.
+  const noRespHtml = html.replace(/(?:sm|md|lg|xl|2xl):grid-cols-\d+/g, '');
+  const bareGrid = (noRespHtml.match(/[\s"']grid-cols-[34](?=[\s"'])/g) || []).length;
   const nowrapCount = countMatches(html, /white-space\s*:\s*nowrap/gi);
   const fixedFindings = [];
   if (wideMatches.length > 0) {
     fixedFindings.push(wideMatches.length + ' wide fixed-width rule' + (wideMatches.length === 1 ? '' : 's') + ' found (900px or more)');
     for (const c of findContexts(declHtml, /(?:^|[^-])((?:width|min-width)\s*:\s*(?:9[0-9]{2}|1[0-9]{3,})\s*px)/gi, 5)) fixedFindings.push(c);
   }
+  if (twWide.length > 0) fixedFindings.push('Wide Tailwind width class' + (twWide.length === 1 ? '' : 'es') + ' found: ' + [...new Set(twWide)].join(', '));
+  if (bareGrid > 0) fixedFindings.push(bareGrid + ' multi-column grid' + (bareGrid === 1 ? '' : 's') + ' with no mobile breakpoint (grid-cols-3/4 without sm:/md:) — columns can squeeze or overflow on phones');
   if (nowrapCount > 0) fixedFindings.push(nowrapCount + ' white-space: nowrap rule' + (nowrapCount === 1 ? '' : 's') + ' — text that cannot wrap can also spill off-screen');
-  if (wideMatches.length > 0) {
+  if (wideMatches.length > 0 || twWide.length > 0) {
     checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'fail', detail: 'Fixed widths of 900px or more found in the code — content can spill off a phone screen.', findings: fixedFindings });
+  } else if (bareGrid > 0) {
+    checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'warn', detail: 'No wide fixed widths found, but multi-column grids without a mobile breakpoint can squeeze or overflow on phones.', findings: fixedFindings });
   } else {
     checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'pass', detail: 'No wide fixed widths found in the page code.', findings: fixedFindings });
   }
@@ -229,11 +258,11 @@ function buildChecks(html, mobileFinalUrl, desktopFinalUrl) {
   }
 
   // 8. Tap targets — cannot be measured from static HTML; a real browser
-  // render is required. Marked not-tested, never assumed to pass.
-  checks.push({ id: 'taps', label: 'Tap target size', status: 'not-tested', detail: 'Not measured — tap targets can only be measured while a page renders in a real browser (Google Lighthouse covers this when available).' });
+  // render is required. The rendered check (/api/render) measures them.
+  checks.push({ id: 'taps', label: 'Tap target size', status: 'not-tested', detail: 'Not measured — tap targets can only be measured while a page renders in a real browser (the rendered check below measures them).' });
 
   // 9. Layout shift (CLS) — same limitation as tap targets.
-  checks.push({ id: 'cls', label: 'Layout shift (CLS)', status: 'not-tested', detail: 'Not measured — layout shift can only be measured while a page renders (Google Lighthouse covers this when available).' });
+  checks.push({ id: 'cls', label: 'Layout shift (CLS)', status: 'not-tested', detail: 'Not measured — layout shift can only be measured while a page renders (the rendered check below measures it).' });
 
   return checks;
 }
@@ -326,7 +355,7 @@ module.exports = async (req, res) => {
     score,
     verdict,
     method: 'static-html',
-    limits: ['Tap target size and layout shift (CLS) need a real browser render and are not measured by this static check.'],
+    limits: ['Tap targets, layout shift (CLS) and rendered overflow are measured by the real-browser check when it runs; this static check reads the page code only.'],
     checks,
     counts: {
       images: countMatches(html, /<img[\s>]/gi),
