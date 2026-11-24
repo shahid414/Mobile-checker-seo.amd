@@ -28,8 +28,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+            0%, 100% { box-shadow: 0 0 15px rgba(217, 8, 60, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(217, 8, 60, 0.5); }
+        }
+        body {
+            background: linear-gradient(180deg, #180515 0%, #120614 32%, #0D0D0D 68%);
+            background-attachment: fixed;
         }
         .animate-fade {
             animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -39,25 +43,25 @@
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-slate-950">
+<body class="bg-[#0D0D0D] text-[#EDEDED] font-sans min-h-screen flex flex-col justify-between selection:bg-[#D9083C] selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+    <header class="border-b border-[#E8E8E8] bg-white sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <!-- Original Logo SVG -->
-                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-8 h-8 text-[#D9083C] animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
                 </svg>
-                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+                <span class="font-bold text-xl tracking-tight text-[#141414]">MobiCheck <span class="text-[#D9083C]">SEO</span></span>
             </div>
-            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
-                <a href="#tool" class="hover:text-cyan-400 transition">Tool</a>
-                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
-                <a href="#what-we-check" class="hover:text-cyan-400 transition">What we check</a>
-                <a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a>
-                <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
+            <nav class="hidden sm:flex gap-6 text-sm text-[#141414]">
+                <a href="#tool" class="hover:text-[#D9083C] transition">Tool</a>
+                <a href="/tools" class="hover:text-[#D9083C] transition">All Tools</a>
+                <a href="#what-we-check" class="hover:text-[#D9083C] transition">What we check</a>
+                <a href="#guide" class="hover:text-[#D9083C] transition">SEO Guide</a>
+                <a href="#contact" class="hover:text-[#D9083C] transition">Contact</a>
             </nav>
         </div>
     </header>
@@ -67,41 +71,41 @@
         <div class="animate-fade">
             <!-- Primary H1 Incorporating Keywords -->
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-                Free Mobile Friendliness Test Tool & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-400">Website Responsiveness Checker</span>
+                Free Mobile Friendliness Test Tool & <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D9083C] to-[#B80632]">Website Responsiveness Checker</span>
             </h1>
-            <p class="text-slate-400 max-w-3xl">
-                Check if any website is mobile-friendly. This <span class="text-cyan-300 font-medium">mobile first indexing test tool</span> fetches your page as a phone browser and reports real mobile usability issues — in seconds, free, no signup.
+            <p class="text-[#A6A4A6] max-w-3xl">
+                Check if any website is mobile-friendly. This <span class="text-[#F43F5E] font-medium">mobile first indexing test tool</span> fetches your page as a phone browser and reports real mobile usability issues — in seconds, free, no signup.
             </p>
         </div>
 
         <!-- Tool Box Card -->
-        <div id="tool" class="bg-slate-900/80 backdrop-blur border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-2xl glow-box animate-fade">
-            <p class="text-slate-400 text-sm leading-relaxed">
+        <div id="tool" class="bg-[#151515] backdrop-blur border border-[#252525] p-6 sm:p-8 rounded-2xl shadow-2xl glow-box animate-fade">
+            <p class="text-[#A6A4A6] text-sm leading-relaxed">
                 Enter a website URL below to test its mobile usability — viewport setup, responsive layout, font sizes and more. One URL per test.
             </p>
-            <div class="border-t border-slate-800 my-5"></div>
-            <label for="urlInput" class="block text-sm font-semibold text-slate-300 mb-2">Website URL</label>
+            <div class="border-t border-[#252525] my-5"></div>
+            <label for="urlInput" class="block text-sm font-semibold text-[#D4D4D4] mb-2">Website URL</label>
             <div class="flex flex-col sm:flex-row gap-3">
-                <input type="url" id="urlInput" placeholder="https://example.com" class="flex-grow bg-slate-950 border border-slate-700 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition shadow-inner">
-                <button onclick="runAnalysis()" id="analyzeBtn" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-3.5 rounded-xl transition duration-300 transform active:scale-95 shadow-lg shadow-cyan-500/20">
+                <input type="url" id="urlInput" placeholder="https://example.com" class="flex-grow bg-[#261F26] border border-[#464247] rounded-xl px-4 py-3.5 text-white placeholder-[#9CA3AF] focus:outline-none focus:border-[#D9083C] transition shadow-inner">
+                <button onclick="runAnalysis()" id="analyzeBtn" class="bg-[#D9083C] hover:bg-[#B80632] text-white font-bold px-8 py-3.5 rounded-xl transition duration-300 transform active:scale-95 shadow-lg shadow-[#D9083C]/25">
                     Analyze Now
                 </button>
             </div>
-            <p class="text-slate-500 text-xs mt-3">Tip: test your homepage first, then your most important pages. Results are based on the live page — not a cached copy.</p>
+            <p class="text-[#7A7A7A] text-xs mt-3">Tip: test your homepage first, then your most important pages. Results are based on the live page — not a cached copy.</p>
 
             <!-- Loader Indicator -->
             <div id="loading" class="hidden mt-8 text-center py-6">
-                <div class="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                <p class="text-cyan-400 font-medium text-sm animate-pulse">Running a real mobile check — fetching the page as a phone browser. Usually 3–5 seconds…</p>
+                <div class="inline-block w-8 h-8 border-4 border-[#D9083C] border-t-transparent rounded-full animate-spin mb-3"></div>
+                <p class="text-[#D9083C] font-medium text-sm animate-pulse">Running a real mobile check — fetching the page as a phone browser. Usually 3–5 seconds…</p>
             </div>
 
         </div>
 
         <!-- Results Card (shown after a test runs) -->
-        <div id="resultsCard" class="hidden bg-slate-900/80 backdrop-blur border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-2xl animate-fade">
+        <div id="resultsCard" class="hidden bg-[#151515] backdrop-blur border border-[#252525] p-6 sm:p-8 rounded-2xl shadow-2xl animate-fade">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
                 <h2 class="text-xl font-bold text-white">Test results</h2>
-                <span class="text-xs text-slate-500">Live test — fetched as a phone browser</span>
+                <span class="text-xs text-[#7A7A7A]">Live test — fetched as a phone browser</span>
             </div>
             <!-- Results Panel (filled by JavaScript with the real test result) -->
             <div id="results" class="space-y-4"></div>
@@ -112,73 +116,73 @@
 
         <!-- What is a mobile-friendly test? / Why it matters -->
         <section id="about" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl">
+            <div class="bg-[#151515] border border-[#252525] p-6 rounded-2xl">
                 <h2 class="text-xl font-bold text-white mb-3">What is a mobile-friendly test?</h2>
-                <p class="text-slate-400 text-sm leading-relaxed">A mobile-friendly test checks whether a website works well on a phone: does it fit the screen without sideways scrolling, is the text readable without zooming, and can visitors tap links and buttons easily? This tool fetches your page the way a phone browser does and checks the real page code — viewport tag, responsive CSS, font sizes and layout risks.</p>
+                <p class="text-[#A6A4A6] text-sm leading-relaxed">A mobile-friendly test checks whether a website works well on a phone: does it fit the screen without sideways scrolling, is the text readable without zooming, and can visitors tap links and buttons easily? This tool fetches your page the way a phone browser does and checks the real page code — viewport tag, responsive CSS, font sizes and layout risks.</p>
             </div>
-            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl">
+            <div class="bg-[#151515] border border-[#252525] p-6 rounded-2xl">
                 <h2 class="text-xl font-bold text-white mb-3">Why mobile usability matters</h2>
-                <ul class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc pl-5">
-                    <li><span class="text-slate-200 font-medium">Mobile-first indexing:</span> Google ranks your site mainly from its mobile version.</li>
-                    <li><span class="text-slate-200 font-medium">Rankings:</span> pages with mobile usability errors can rank lower than mobile-friendly competitors.</li>
-                    <li><span class="text-slate-200 font-medium">Visitors:</span> most web traffic is on phones — a page that is hard to use on mobile loses visitors fast.</li>
+                <ul class="text-[#A6A4A6] text-sm leading-relaxed space-y-2 list-disc pl-5">
+                    <li><span class="text-white font-medium">Mobile-first indexing:</span> Google ranks your site mainly from its mobile version.</li>
+                    <li><span class="text-white font-medium">Rankings:</span> pages with mobile usability errors can rank lower than mobile-friendly competitors.</li>
+                    <li><span class="text-white font-medium">Visitors:</span> most web traffic is on phones — a page that is hard to use on mobile loses visitors fast.</li>
                 </ul>
             </div>
         </section>
 
         <!-- What this tool checks -->
-        <section id="what-we-check" class="bg-slate-900/40 p-6 sm:p-8 rounded-2xl border border-slate-800/60 space-y-4">
+        <section id="what-we-check" class="bg-[#151515] p-6 sm:p-8 rounded-2xl border border-[#252525] space-y-4">
             <h2 class="text-2xl font-bold text-white">What this tool checks</h2>
-            <p class="text-slate-400 text-sm leading-relaxed">Every test runs the same seven checks. Each check carries a weight — the score is the sum of the checks you pass (a warning counts as half).</p>
+            <p class="text-[#A6A4A6] text-sm leading-relaxed">Every test runs the same seven checks. Each check carries a weight — the score is the sum of the checks you pass (a warning counts as half).</p>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Viewport tag · 30 pts</span><p class="text-slate-500 mt-1">Is width=device-width set, so phones render the page at the right width?</p></div>
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Responsive CSS · 20 pts</span><p class="text-slate-500 mt-1">Are there media queries in the page or its stylesheets, so the layout adapts?</p></div>
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Font size · 15 pts</span><p class="text-slate-500 mt-1">Is the smallest text at least 16px, readable without zooming?</p></div>
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Horizontal scroll risk · 15 pts</span><p class="text-slate-500 mt-1">Any fixed widths of 900px or more that can spill off a phone screen?</p></div>
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Pinch-to-zoom · 10 pts</span><p class="text-slate-500 mt-1">Can visitors zoom in, or is zoom locked by the viewport tag?</p></div>
-                <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-200 font-semibold">Title &amp; H1 · 10 pts</span><p class="text-slate-500 mt-1">Does the page have a title tag and one H1 heading?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Viewport tag · 30 pts</span><p class="text-[#7A7A7A] mt-1">Is width=device-width set, so phones render the page at the right width?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Responsive CSS · 20 pts</span><p class="text-[#7A7A7A] mt-1">Are there media queries in the page or its stylesheets, so the layout adapts?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Font size · 15 pts</span><p class="text-[#7A7A7A] mt-1">Is the smallest text at least 16px, readable without zooming?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Horizontal scroll risk · 15 pts</span><p class="text-[#7A7A7A] mt-1">Any fixed widths of 900px or more that can spill off a phone screen?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Pinch-to-zoom · 10 pts</span><p class="text-[#7A7A7A] mt-1">Can visitors zoom in, or is zoom locked by the viewport tag?</p></div>
+                <div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-white font-semibold">Title &amp; H1 · 10 pts</span><p class="text-[#7A7A7A] mt-1">Does the page have a title tag and one H1 heading?</p></div>
             </div>
-            <p class="text-slate-500 text-xs leading-relaxed">Tap target size and layout shift (CLS) can only be measured while a page renders in a real browser, so this static check marks them NOT TESTED instead of guessing. Google Lighthouse covers them when it is available.</p>
+            <p class="text-[#7A7A7A] text-xs leading-relaxed">Tap target size and layout shift (CLS) can only be measured while a page renders in a real browser, so this static check marks them NOT TESTED instead of guessing. Google Lighthouse covers them when it is available.</p>
         </section>
 
         <!-- More Free Tools -->
         <section id="more-tools" class="space-y-6">
             <h2 class="text-2xl font-bold text-white">More free tools</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div><p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p></a>
-                <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div><p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p></a>
-                <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Website Speed Test</div><p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p></a>
-                <a href="/robots-txt-tester" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Robots.txt Tester</div><p class="text-slate-400 text-sm">See any site&rsquo;s robots.txt rules &amp; whether Googlebot is blocked.</p></a>
-                <a href="/meta-tag-analyzer" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Meta Tag Analyzer</div><p class="text-slate-400 text-sm">Check any page&rsquo;s title, description &amp; social tags.</p></a>
-                <a href="/schema-markup-validator" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Schema Markup Validator</div><p class="text-slate-400 text-sm">Validate any page&rsquo;s JSON-LD structured data.</p></a>
-                <a href="/http-status-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">HTTP Status Checker</div><p class="text-slate-400 text-sm">Follow any URL&rsquo;s redirect chain step by step.</p></a>
-                <a href="/ssl-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">SSL Checker</div><p class="text-slate-400 text-sm">Verify any site&rsquo;s HTTPS certificate &amp; expiry date.</p></a>
+                <a href="/mobile-first-indexing-checker" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Mobile-First Indexing Checker</div><p class="text-[#A6A4A6] text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p></a>
+                <a href="/mobile-seo-checker" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Mobile SEO Checker</div><p class="text-[#A6A4A6] text-sm">Audit any page for mobile SEO in one quick test.</p></a>
+                <a href="/website-speed-test" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Website Speed Test</div><p class="text-[#A6A4A6] text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p></a>
+                <a href="/robots-txt-tester" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Robots.txt Tester</div><p class="text-[#A6A4A6] text-sm">See any site&rsquo;s robots.txt rules &amp; whether Googlebot is blocked.</p></a>
+                <a href="/meta-tag-analyzer" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Meta Tag Analyzer</div><p class="text-[#A6A4A6] text-sm">Check any page&rsquo;s title, description &amp; social tags.</p></a>
+                <a href="/schema-markup-validator" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">Schema Markup Validator</div><p class="text-[#A6A4A6] text-sm">Validate any page&rsquo;s JSON-LD structured data.</p></a>
+                <a href="/http-status-checker" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">HTTP Status Checker</div><p class="text-[#A6A4A6] text-sm">Follow any URL&rsquo;s redirect chain step by step.</p></a>
+                <a href="/ssl-checker" class="bg-[#151515] border border-[#252525] p-5 rounded-2xl hover:border-[#D9083C]/60 transition block"><div class="text-[#D9083C] font-bold mb-1">SSL Checker</div><p class="text-[#A6A4A6] text-sm">Verify any site&rsquo;s HTTPS certificate &amp; expiry date.</p></a>
             </div>
-            <p class="text-sm"><a href="/tools" class="text-cyan-400 hover:text-cyan-300 font-semibold">See all free tools &rarr;</a></p>
+            <p class="text-sm"><a href="/tools" class="text-[#D9083C] hover:text-[#F43F5E] font-semibold">See all free tools &rarr;</a></p>
         </section>
 
         <!-- Common problems + how to improve -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl">
+            <div class="bg-[#151515] border border-[#252525] p-6 rounded-2xl">
                 <h2 class="text-xl font-bold text-white mb-3">Common mobile usability problems</h2>
-                <ul class="text-slate-400 text-sm leading-relaxed space-y-2 list-disc pl-5">
-                    <li><span class="text-slate-200 font-medium">Missing viewport tag</span> — phones render the page at desktop width and shrink it.</li>
-                    <li><span class="text-slate-200 font-medium">Content wider than the screen</span> — fixed-width elements force sideways scrolling.</li>
-                    <li><span class="text-slate-200 font-medium">Text too small to read</span> — visitors must pinch-zoom every paragraph.</li>
-                    <li><span class="text-slate-200 font-medium">Clickable elements too close</span> — buttons and links that are hard to tap accurately.</li>
-                    <li><span class="text-slate-200 font-medium">No responsive CSS</span> — one fixed layout for every screen size.</li>
+                <ul class="text-[#A6A4A6] text-sm leading-relaxed space-y-2 list-disc pl-5">
+                    <li><span class="text-white font-medium">Missing viewport tag</span> — phones render the page at desktop width and shrink it.</li>
+                    <li><span class="text-white font-medium">Content wider than the screen</span> — fixed-width elements force sideways scrolling.</li>
+                    <li><span class="text-white font-medium">Text too small to read</span> — visitors must pinch-zoom every paragraph.</li>
+                    <li><span class="text-white font-medium">Clickable elements too close</span> — buttons and links that are hard to tap accurately.</li>
+                    <li><span class="text-white font-medium">No responsive CSS</span> — one fixed layout for every screen size.</li>
                 </ul>
             </div>
-            <div id="guide" class="bg-slate-900/50 border border-slate-800/80 p-6 rounded-2xl">
+            <div id="guide" class="bg-[#151515] border border-[#252525] p-6 rounded-2xl">
                 <h2 class="text-xl font-bold text-white mb-3">How to improve your score</h2>
-                <ol class="text-slate-400 text-sm leading-relaxed space-y-2 list-decimal pl-5">
-                    <li>Add <span class="text-slate-200 font-medium">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span> to every page.</li>
-                    <li>Use responsive CSS with <span class="text-slate-200 font-medium">@media queries</span> and fluid widths (<span class="text-slate-200 font-medium">max-width: 100%</span>).</li>
-                    <li>Set body text to at least <span class="text-slate-200 font-medium">16px</span> and keep tap targets at least <span class="text-slate-200 font-medium">48px</span> apart.</li>
+                <ol class="text-[#A6A4A6] text-sm leading-relaxed space-y-2 list-decimal pl-5">
+                    <li>Add <span class="text-white font-medium">&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</span> to every page.</li>
+                    <li>Use responsive CSS with <span class="text-white font-medium">@media queries</span> and fluid widths (<span class="text-white font-medium">max-width: 100%</span>).</li>
+                    <li>Set body text to at least <span class="text-white font-medium">16px</span> and keep tap targets at least <span class="text-white font-medium">48px</span> apart.</li>
                     <li>Re-test after each fix — then check your most-visited pages the same way.</li>
                 </ol>
                 <h3 class="text-lg font-bold text-white mt-6 mb-2">How to read your results</h3>
-                <ul class="text-slate-400 text-sm leading-relaxed space-y-1.5 list-disc pl-5">
+                <ul class="text-[#A6A4A6] text-sm leading-relaxed space-y-1.5 list-disc pl-5">
                     <li><span class="text-emerald-400 font-semibold">80–100 — Mobile friendly:</span> the page passes the checks that matter.</li>
                     <li><span class="text-amber-400 font-semibold">50–79 — Needs work:</span> fix the failed checks listed in the recommendations.</li>
                     <li><span class="text-red-400 font-semibold">Below 50 — Not mobile friendly:</span> the page likely has a missing viewport or no responsive layout.</li>
@@ -187,52 +191,52 @@
         </section>
 
         <!-- Contact Section -->
-        <div id="contact" class="bg-slate-900/40 border border-slate-800/60 p-8 rounded-2xl text-center">
+        <div id="contact" class="bg-[#151515] border border-[#252525] p-8 rounded-2xl text-center">
             <h3 class="text-xl font-bold text-white mb-2">Have Questions or Suggestions?</h3>
-            <p class="text-slate-400 text-sm mb-4">Reach out to our web development team for custom reporting integration.</p>
-            <span class="text-cyan-400 font-semibold text-sm">support@mobicheckseo.com</span>
+            <p class="text-[#A6A4A6] text-sm mb-4">Reach out to our web development team for custom reporting integration.</p>
+            <span class="text-[#D9083C] font-semibold text-sm">support@mobicheckseo.com</span>
         </div>
     </main>
 
     <!-- Professional Footer with Links and Content -->
-    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+    <footer class="border-t border-[#252525] bg-[#141414] text-[#909090] text-sm mt-12">
         <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="space-y-3">
                 <div class="flex items-center gap-2 text-white font-bold text-lg">
-                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
-                    MobiCheck SEO
+                    <svg class="w-6 h-6 text-[#D9083C]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck <span class="text-[#D9083C]">SEO</span>
                 </div>
-                <p class="text-xs text-slate-500">The ultimate free mobile friendliness test tool engineered to optimize your websites for modern search engine algorithms.</p>
+                <p class="text-xs text-[#7A7A7A]">The ultimate free mobile friendliness test tool engineered to optimize your websites for modern search engine algorithms.</p>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <h4 class="text-[#9F9F9F] font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><a href="#tool" class="hover:text-cyan-400 transition">Test Tool</a></li>
-                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
-                    <li><a href="#what-we-check" class="hover:text-cyan-400 transition">What we check</a></li>
-                    <li><a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a></li>
-                    <li><a href="#contact" class="hover:text-cyan-400 transition">Support</a></li>
+                    <li><a href="#tool" class="hover:text-[#D9083C] transition">Test Tool</a></li>
+                    <li><a href="/tools" class="hover:text-[#D9083C] transition">All Free Tools</a></li>
+                    <li><a href="#what-we-check" class="hover:text-[#D9083C] transition">What we check</a></li>
+                    <li><a href="#guide" class="hover:text-[#D9083C] transition">SEO Guide</a></li>
+                    <li><a href="#contact" class="hover:text-[#D9083C] transition">Support</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Resources</h4>
+                <h4 class="text-[#9F9F9F] font-semibold mb-3 text-sm tracking-wider uppercase">Resources</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
-                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
-                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
-                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-[#D9083C] transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-[#D9083C] transition">Website Speed Test</a></li>
+                    <li><a href="/robots-txt-tester" class="hover:text-[#D9083C] transition">Robots.txt Tester</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-[#D9083C] transition">Sitemap Validator</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Legal</h4>
+                <h4 class="text-[#9F9F9F] font-semibold mb-3 text-sm tracking-wider uppercase">Legal</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Privacy Policy</span></li>
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Terms of Service</span></li>
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Disclaimer</span></li>
+                    <li><span class="hover:text-[#D9083C] transition cursor-pointer">Privacy Policy</span></li>
+                    <li><span class="hover:text-[#D9083C] transition cursor-pointer">Terms of Service</span></li>
+                    <li><span class="hover:text-[#D9083C] transition cursor-pointer">Disclaimer</span></li>
                 </ul>
             </div>
         </div>
-        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+        <div class="border-t border-[#252525] py-6 text-center text-[#6C6C6C] text-xs">
             <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
         </div>
     </footer>
@@ -247,15 +251,15 @@
 
         function checkRow(check) {
             var icon = check.status === 'pass' ? '✓' : check.status === 'warn' ? '⚠' : check.status === 'not-tested' ? '–' : '✗';
-            var color = check.status === 'pass' ? 'text-emerald-400' : check.status === 'warn' ? 'text-amber-400' : check.status === 'not-tested' ? 'text-slate-400' : 'text-red-400';
+            var color = check.status === 'pass' ? 'text-emerald-400' : check.status === 'warn' ? 'text-amber-400' : check.status === 'not-tested' ? 'text-[#A6A4A6]' : 'text-red-400';
             var statusText = check.status === 'not-tested' ? 'NOT TESTED' : check.status.toUpperCase();
             var weightText = check.weight ? ' · ' + check.weight + ' pts' : ' · not scored';
-            return '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">' +
+            return '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]">' +
                 '<div class="flex items-center justify-between gap-3">' +
-                '<span class="text-slate-300 font-medium">' + escapeHtml(check.label) + '<span class="text-slate-500 text-xs">' + weightText + '</span></span>' +
+                '<span class="text-[#D4D4D4] font-medium">' + escapeHtml(check.label) + '<span class="text-[#7A7A7A] text-xs">' + weightText + '</span></span>' +
                 '<span class="' + color + ' font-bold flex items-center gap-1.5 shrink-0">' + icon + ' ' + statusText + '</span>' +
                 '</div>' +
-                '<p class="text-slate-500 text-sm mt-1">' + escapeHtml(check.detail) + '</p>' +
+                '<p class="text-[#7A7A7A] text-sm mt-1">' + escapeHtml(check.detail) + '</p>' +
                 '</div>';
         }
 
@@ -269,9 +273,9 @@
             var failed = data.checks.filter(function (c) { return c.status === 'fail'; }).length;
             var warns = data.checks.filter(function (c) { return c.status === 'warn'; }).length;
             var summary = '<div class="grid grid-cols-3 gap-3 text-center">' +
-                '<div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800"><div class="text-emerald-400 font-extrabold text-xl">' + passed + '</div><div class="text-xs text-slate-500">Passed</div></div>' +
-                '<div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800"><div class="text-red-400 font-extrabold text-xl">' + failed + '</div><div class="text-xs text-slate-500">Failed</div></div>' +
-                '<div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800"><div class="text-amber-400 font-extrabold text-xl">' + warns + '</div><div class="text-xs text-slate-500">Warnings</div></div></div>';
+                '<div class="bg-[#0D0D0D] p-3 rounded-xl border border-[#252525]"><div class="text-emerald-400 font-extrabold text-xl">' + passed + '</div><div class="text-xs text-[#7A7A7A]">Passed</div></div>' +
+                '<div class="bg-[#0D0D0D] p-3 rounded-xl border border-[#252525]"><div class="text-red-400 font-extrabold text-xl">' + failed + '</div><div class="text-xs text-[#7A7A7A]">Failed</div></div>' +
+                '<div class="bg-[#0D0D0D] p-3 rounded-xl border border-[#252525]"><div class="text-amber-400 font-extrabold text-xl">' + warns + '</div><div class="text-xs text-[#7A7A7A]">Warnings</div></div></div>';
             var FIXES = {
                 viewport: 'Add <meta name="viewport" content="width=device-width, initial-scale=1"> inside the <head> of your page.',
                 zoom: 'Remove user-scalable=no and maximum-scale limits from the viewport tag so visitors can zoom.',
@@ -281,9 +285,9 @@
                 seo: 'Add a descriptive <title> and one <h1> heading to the page.'
             };
             var recs = data.checks.filter(function (c) { return c.status === 'fail' || c.status === 'warn'; }).map(function (c) {
-                return '<li><span class="text-slate-200 font-medium">' + escapeHtml(c.label) + ':</span> ' + escapeHtml(FIXES[c.id] || c.detail) + '</li>';
+                return '<li><span class="text-white font-medium">' + escapeHtml(c.label) + ':</span> ' + escapeHtml(FIXES[c.id] || c.detail) + '</li>';
             }).join('');
-            var recsHtml = recs ? '<div class="bg-slate-950/60 p-4 rounded-xl border border-amber-500/30"><div class="text-amber-400 font-bold mb-2">Recommendations</div><ul class="text-slate-400 text-sm space-y-1.5 list-disc pl-5">' + recs + '</ul></div>' : '';
+            var recsHtml = recs ? '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-amber-500/30"><div class="text-amber-400 font-bold mb-2">Recommendations</div><ul class="text-[#A6A4A6] text-sm space-y-1.5 list-disc pl-5">' + recs + '</ul></div>' : '';
             results.innerHTML =
                 '<div class="flex items-center justify-between gap-3 p-4 rounded-xl border ' + verdictColor + '">' +
                 '<span class="font-bold text-lg">' + escapeHtml(data.verdict) + '</span>' +
@@ -292,7 +296,7 @@
                 summary +
                 rows +
                 recsHtml +
-                '<p class="text-slate-500 text-xs leading-relaxed">Tested live: ' + escapeHtml(data.url) +
+                '<p class="text-[#7A7A7A] text-xs leading-relaxed">Tested live: ' + escapeHtml(data.url) +
                 ' · HTTP ' + data.status + ' · ' + (data.loadMs / 1000).toFixed(1) + 's to fetch · ' + data.htmlKb + ' KB HTML · ' +
                 data.counts.images + ' images, ' + data.counts.scripts + ' scripts, ' + data.counts.links + ' links. ' +
                 'Score = sum of passed checks (each row shows its weight; warn = half). Static HTML check — it reads the page code as a phone browser would; it does not run JavaScript. Tap targets and layout shift need a real browser render and are marked NOT TESTED.</p>';
@@ -318,7 +322,7 @@
         var PSI_API_KEY = 'YOUR_PSI_API_KEY';
 
         function cwvColor(value, good, poor) {
-            if (value === null || value === undefined) return 'text-slate-400';
+            if (value === null || value === undefined) return 'text-[#A6A4A6]';
             return value <= good ? 'text-emerald-400' : value <= poor ? 'text-amber-400' : 'text-red-400';
         }
 
@@ -353,39 +357,39 @@
         function scoreChip(label, value) {
             if (value === null) return '';
             var color = value >= 90 ? 'text-emerald-400' : value >= 50 ? 'text-amber-400' : 'text-red-400';
-            return '<div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">' +
-                '<div class="text-xs text-slate-500 mb-1">' + label + '</div>' +
+            return '<div class="bg-[#0D0D0D] p-3 rounded-xl border border-[#252525] text-center">' +
+                '<div class="text-xs text-[#7A7A7A] mb-1">' + label + '</div>' +
                 '<div class="' + color + ' font-extrabold text-xl">' + value + '</div></div>';
         }
 
         function renderPsi(p) {
             var box = document.getElementById('psiResults');
-            var html = '<div class="border-t border-slate-800 pt-6 space-y-4">' +
+            var html = '<div class="border-t border-[#252525] pt-6 space-y-4">' +
                 '<h3 class="text-white font-bold text-lg">Google Lighthouse — PageSpeed Insights</h3>';
             if (p.screenshot) {
-                html += '<div class="rounded-xl overflow-hidden border border-slate-800"><img src="' + p.screenshot + '" alt="Mobile screenshot of the tested page" class="w-full block"></div>';
+                html += '<div class="rounded-xl overflow-hidden border border-[#252525]"><img src="' + p.screenshot + '" alt="Mobile screenshot of the tested page" class="w-full block"></div>';
             }
             var chips = scoreChip('Performance', p.scores.performance) + scoreChip('Accessibility', p.scores.accessibility) +
                 scoreChip('Best practices', p.scores.bestPractices) + scoreChip('SEO', p.scores.seo);
             if (chips) html += '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">' + chips + '</div>';
             var cwv = '';
-            if (p.lcp) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">LCP — largest content</div><div class="' + cwvColor(p.lcp.ms, 2500, 4000) + ' font-bold text-lg">' + escapeHtml(p.lcp.display || (p.lcp.ms / 1000).toFixed(1) + ' s') + '</div></div>';
-            if (p.inp) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">' + (p.inp.lab ? 'TBT — blocking time (lab)' : 'INP — interaction delay') + '</div><div class="' + cwvColor(p.inp.ms, 200, 500) + ' font-bold text-lg">' + escapeHtml(p.inp.display || p.inp.ms + ' ms') + '</div></div>';
-            if (p.cls && p.cls.value !== null) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">CLS — layout shift</div><div class="' + cwvColor(p.cls.value, 0.1, 0.25) + ' font-bold text-lg">' + escapeHtml(p.cls.display || String(p.cls.value)) + '</div></div>';
+            if (p.lcp) cwv += '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><div class="text-xs text-[#7A7A7A]">LCP — largest content</div><div class="' + cwvColor(p.lcp.ms, 2500, 4000) + ' font-bold text-lg">' + escapeHtml(p.lcp.display || (p.lcp.ms / 1000).toFixed(1) + ' s') + '</div></div>';
+            if (p.inp) cwv += '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><div class="text-xs text-[#7A7A7A]">' + (p.inp.lab ? 'TBT — blocking time (lab)' : 'INP — interaction delay') + '</div><div class="' + cwvColor(p.inp.ms, 200, 500) + ' font-bold text-lg">' + escapeHtml(p.inp.display || p.inp.ms + ' ms') + '</div></div>';
+            if (p.cls && p.cls.value !== null) cwv += '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><div class="text-xs text-[#7A7A7A]">CLS — layout shift</div><div class="' + cwvColor(p.cls.value, 0.1, 0.25) + ' font-bold text-lg">' + escapeHtml(p.cls.display || String(p.cls.value)) + '</div></div>';
             if (cwv) html += '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' + cwv + '</div>';
             var lh = '';
-            if (p.viewport !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Viewport (Lighthouse)</span><span class="' + (p.viewport === 1 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.viewport === 1 ? '✓ Passed' : '✗ Issue') + '</span></div>';
-            if (p.tapTargets !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Tap targets (Lighthouse)</span><span class="' + (p.tapTargets >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.tapTargets >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
-            if (p.fontSize !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Font size (Lighthouse)</span><span class="' + (p.fontSize >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.fontSize >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (p.viewport !== null) lh += '<div class="flex items-center justify-between bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-[#D4D4D4] font-medium">Viewport (Lighthouse)</span><span class="' + (p.viewport === 1 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.viewport === 1 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (p.tapTargets !== null) lh += '<div class="flex items-center justify-between bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-[#D4D4D4] font-medium">Tap targets (Lighthouse)</span><span class="' + (p.tapTargets >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.tapTargets >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (p.fontSize !== null) lh += '<div class="flex items-center justify-between bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]"><span class="text-[#D4D4D4] font-medium">Font size (Lighthouse)</span><span class="' + (p.fontSize >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.fontSize >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
             if (lh) html += lh;
-            html += '<p class="text-slate-500 text-xs leading-relaxed">Powered by Google PageSpeed Insights — Lighthouse run on Google servers with mobile emulation.</p></div>';
+            html += '<p class="text-[#7A7A7A] text-xs leading-relaxed">Powered by Google PageSpeed Insights — Lighthouse run on Google servers with mobile emulation.</p></div>';
             box.innerHTML = html;
             box.classList.remove('hidden');
         }
 
         async function runPsiTest(url) {
             var box = document.getElementById('psiResults');
-            box.innerHTML = '<p class="text-cyan-400 text-sm animate-pulse">Google Lighthouse test chal raha hai… (20–40 second lag sakte hain)</p>';
+            box.innerHTML = '<p class="text-[#D9083C] text-sm animate-pulse">Google Lighthouse test chal raha hai… (20–40 second lag sakte hain)</p>';
             box.classList.remove('hidden');
             try {
                 var api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed'
@@ -401,7 +405,7 @@
                 var msg = (err.message || '').indexOf('Quota') !== -1
                     ? 'Google ki daily limit khatam ho gayi hai — kal phir try karein.'
                     : 'Lighthouse test abhi nahi chal saka — thodi der baad try karein.';
-                box.innerHTML = '<p class="text-slate-500 text-xs leading-relaxed">Google Lighthouse test abhi available nahi hai (' + escapeHtml(msg) + '). Upar wala static result phir bhi sahi hai.</p>';
+                box.innerHTML = '<p class="text-[#7A7A7A] text-xs leading-relaxed">Google Lighthouse test abhi available nahi hai (' + escapeHtml(msg) + '). Upar wala static result phir bhi sahi hai.</p>';
             }
         }
 
