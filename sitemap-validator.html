@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap Validator — Free Sitemap XML Check</title>
+    <meta name="description" content="Free sitemap validator — check any sitemap.xml: is it valid, how many URLs it lists, and whether entries carry lastmod dates. Instant, no signup. — try it free.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/sitemap-validator">
+    <meta property="og:title" content="Sitemap Validator — Free Sitemap XML Check">
+    <meta property="og:description" content="Free sitemap validator — check any sitemap.xml: is it valid, how many URLs it lists, and whether entries carry lastmod dates. Instant, no signup. — try it free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/sitemap-validator">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Sitemap Validator — Free Sitemap XML Check">
+    <meta name="twitter:description" content="Free sitemap validator — check any sitemap.xml: is it valid, how many URLs it lists, and whether entries carry lastmod dates. Instant, no signup. — try it free.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sitemap Validator",
+  "url": "https://mobile-checker-seo-amd.vercel.app/sitemap-validator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free sitemap validator \u2014 check any sitemap.xml: is it valid, how many URLs it lists, and whether entries carry lastmod dates. Instant, no signup. \u2014 try it free."
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What if a site has no sitemap?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google can still crawl it through links \u2014 but a sitemap speeds up discovery, especially for new or large sites. The validator will tell you no file was found."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a sitemap index?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A file that lists several sitemaps instead of URLs \u2014 used by large sites. This validator detects indexes and reports how many sitemaps they contain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many URLs can a sitemap hold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Up to 50,000 URLs or 50 MB uncompressed per file. Bigger sites split into several sitemaps under one index."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </a>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="/" class="hover:text-cyan-400 transition">Mobile Test</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
+                <a href="/tools#guides" class="hover:text-cyan-400 transition">Guides</a>
+                <a href="/#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <!-- Intro -->
+        <div class="text-center animate-fade">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">Sitemap Validator</h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">Validate any sitemap.xml in seconds. Is it real XML, how many URLs does it list, and do the entries carry lastmod dates so Google knows what changed?</p>
+        </div>
+
+        <!-- Tool -->
+        <div id="tool" class="bg-slate-900/80 backdrop-blur border border-slate-800 p-8 rounded-2xl shadow-2xl glow-box animate-fade">
+            <label for="urlInput" class="block text-sm font-medium text-slate-400 mb-2">Target Website URL</label>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="urlInput" placeholder="https://example.com" class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                <button onclick="runTool('/api/sitemap')" id="analyzeBtn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">Validate Sitemap</button>
+            </div>
+            <div id="loading" class="hidden mt-6 text-center">
+                <p class="text-cyan-400 text-sm animate-pulse">Fetching and validating the sitemap…</p>
+            </div>
+            <div id="results" class="hidden mt-8 space-y-3"></div>
+        </div>
+
+        <!-- How to use -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">How to use</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 1</div>
+                    <div class="text-white font-semibold">Enter the website address</div>
+                    <p class="text-slate-400 text-sm mt-1">Paste any domain — we check its /sitemap.xml — or a sitemap URL directly.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 2</div>
+                    <div class="text-white font-semibold">Press Validate Sitemap</div>
+                    <p class="text-slate-400 text-sm mt-1">Our server downloads and parses the file.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 3</div>
+                    <div class="text-white font-semibold">Read the result</div>
+                    <p class="text-slate-400 text-sm mt-1">Valid or not, URL count, lastmod coverage and sample URLs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">What is a sitemap?</h2>
+                <p>A sitemap.xml is a file that lists every important URL on a site so search engines can discover them all — including pages with few or no links pointing to them. It usually lives at example.com/sitemap.xml and is listed in robots.txt.</p>
+                <p>A good sitemap lists only real, working URLs that return 200, and carries a lastmod date on each entry so Google knows what changed. This validator checks the format, counts the URLs and shows whether lastmod dates are present.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Frequently asked questions</h2>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">What if a site has no sitemap?</h3>
+                <p class="text-slate-400 text-sm">Google can still crawl it through links — but a sitemap speeds up discovery, especially for new or large sites. The validator will tell you no file was found.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">What is a sitemap index?</h3>
+                <p class="text-slate-400 text-sm">A file that lists several sitemaps instead of URLs — used by large sites. This validator detects indexes and reports how many sitemaps they contain.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">How many URLs can a sitemap hold?</h3>
+                <p class="text-slate-400 text-sm">Up to 50,000 URLs or 50 MB uncompressed per file. Bigger sites split into several sitemaps under one index.</p>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Related free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div>
+                <p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p>
+            </a>
+            <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div>
+                <p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p>
+            </a>
+            <a href="/free-mobile-friendly-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+            </a>
+            <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Website Speed Test</div>
+                <p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p>
+            </a>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">Free mobile friendliness and SEO tools to optimize your websites for modern search engines.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/" class="hover:text-cyan-400 transition">Mobile Friendly Test</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">More Tools</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/meta-tag-analyzer" class="hover:text-cyan-400 transition">Meta Tag Analyzer</a></li>
+                    <li><a href="/schema-markup-validator" class="hover:text-cyan-400 transition">Schema Markup Validator</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Guides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/google-mobile-friendly-test-retired" class="hover:text-cyan-400 transition">Google's Test Is Gone — What Now?</a></li>
+                    <li><a href="/what-is-mobile-first-indexing" class="hover:text-cyan-400 transition">What Is Mobile-First Indexing?</a></li>
+                    <li><a href="/how-to-check-mobile-friendly" class="hover:text-cyan-400 transition">How to Check Mobile Friendliness</a></li>
+                    <li><a href="/core-web-vitals-explained" class="hover:text-cyan-400 transition">Core Web Vitals Explained</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+    <!-- Interactive JavaScript Logic -->
+    <script>
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        function rowHtml(label, detail, status) {
+            var icon = status === 'pass' ? '✓' : status === 'warn' ? '⚠' : status === 'fail' ? '✗' : '•';
+            var color = status === 'pass' ? 'text-emerald-400' : status === 'warn' ? 'text-amber-400' : status === 'fail' ? 'text-red-400' : 'text-slate-400';
+            return '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="flex items-center justify-between gap-3"><span class="text-slate-300 font-medium">' + escapeHtml(label) + '</span><span class="' + color + ' font-bold shrink-0">' + icon + '</span></div><p class="text-slate-500 text-sm mt-1">' + escapeHtml(detail) + '</p></div>';
+        }
+
+        function verdictHtml(verdict, score) {
+            var color = score >= 80 ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10' : score >= 50 ? 'text-amber-400 border-amber-500/40 bg-amber-500/10' : 'text-red-400 border-red-500/40 bg-red-500/10';
+            return '<div class="flex items-center justify-between gap-3 p-4 rounded-xl border ' + color + '"><span class="font-bold text-lg">' + escapeHtml(verdict) + '</span><span class="font-extrabold text-2xl">' + score + ' / 100</span></div>';
+        }
+
+        async function runTool(endpoint) {
+            var input = document.getElementById('urlInput');
+            var btn = document.getElementById('analyzeBtn');
+            var loading = document.getElementById('loading');
+            var results = document.getElementById('results');
+            var url = input.value.trim();
+            if (!url) { alert('Please enter a valid target URL.'); return; }
+            if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+            try { new URL(url); } catch (e) { alert('Please enter a valid URL, e.g. https://example.com'); return; }
+            btn.disabled = true;
+            btn.textContent = 'Checking…';
+            btn.classList.add('opacity-60', 'cursor-not-allowed');
+            results.classList.add('hidden');
+            results.innerHTML = '';
+            loading.classList.remove('hidden');
+            try {
+                var res = await fetch(endpoint + '?url=' + encodeURIComponent(url));
+                var data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'The check failed. Please try again.');
+                renderResults(data);
+            } catch (err) {
+                results.innerHTML = '<div class="p-4 rounded-xl border border-red-500/40 bg-red-500/10 text-red-300 text-sm">' + escapeHtml(err.message || 'The check failed. Please try again.') + '</div>';
+                results.classList.remove('hidden');
+            } finally {
+                loading.classList.add('hidden');
+                btn.disabled = false;
+                btn.textContent = BTN_LABEL;
+                btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        }
+
+        var BTN_LABEL = 'Validate Sitemap';
+
+        function renderResults(data) {
+            var results = document.getElementById('results');
+            if (!data.found) {
+                results.innerHTML = verdictHtml('No sitemap found', 40) +
+                    '<p class="text-slate-400 text-sm">' + escapeHtml(data.note || 'No sitemap.xml found at this address.') + '</p>';
+                results.classList.remove('hidden');
+                return;
+            }
+            var score = data.validXml ? 100 : 0;
+            var verdict = data.validXml ? (data.isIndex ? 'Valid sitemap index' : 'Valid sitemap') : 'Not a valid sitemap';
+            var html = verdictHtml(verdict, score);
+            if (data.isIndex) {
+                html += rowHtml('Sitemaps in index', data.sitemapCount + ' sitemap(s) listed.', 'pass');
+            } else {
+                html += rowHtml('URLs listed', data.urlCount + ' URL(s) in the sitemap.', data.urlCount > 0 ? 'pass' : 'fail');
+            }
+            html += rowHtml('Lastmod dates', data.lastmodCount + ' entr(ies) carry a lastmod date.', data.lastmodCount > 0 ? 'pass' : 'warn');
+            html += rowHtml('File size', data.sizeKb + ' KB.', 'pass');
+            if (data.sampleUrls.length) {
+                html += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-slate-300 font-medium mb-2">Sample URLs</div>' +
+                    data.sampleUrls.map(function (u) { return '<p class="text-slate-500 text-sm break-all">• ' + escapeHtml(u) + '</p>'; }).join('') + '</div>';
+            }
+            if (data.note) html += '<p class="text-slate-500 text-sm">' + escapeHtml(data.note) + '</p>';
+            results.innerHTML = html;
+            results.classList.remove('hidden');
+        }
+
+    </script>
+</body>
+</html>

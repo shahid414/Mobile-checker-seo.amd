@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mobile-checker-seo-amd.vercel.app/sitemap.xml

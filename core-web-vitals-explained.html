@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Web Vitals Explained — LCP, INP &amp; CLS Guide</title>
+    <meta name="description" content="Core Web Vitals explained simply: what LCP, INP &amp; CLS measure, the good / needs improvement / poor thresholds, and how to fix each one fast. — instant results.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/core-web-vitals-explained">
+    <meta property="og:title" content="Core Web Vitals Explained — LCP, INP &amp; CLS Guide">
+    <meta property="og:description" content="Core Web Vitals explained simply: what LCP, INP &amp; CLS measure, the good / needs improvement / poor thresholds, and how to fix each one fast. — instant results.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/core-web-vitals-explained">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Core Web Vitals Explained — LCP, INP &amp; CLS Guide">
+    <meta name="twitter:description" content="Core Web Vitals explained simply: what LCP, INP &amp; CLS measure, the good / needs improvement / poor thresholds, and how to fix each one fast. — instant results.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Core Web Vitals Explained \u2014 LCP, INP & CLS",
+  "url": "https://mobile-checker-seo-amd.vercel.app/core-web-vitals-explained",
+  "datePublished": "2026-11-18",
+  "author": {
+    "@type": "Organization",
+    "name": "MobiCheck SEO"
+  },
+  "description": "Core Web Vitals explained simply: what LCP, INP & CLS measure, the good / needs improvement / poor thresholds, and how to fix each one fast. \u2014 instant results."
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do Core Web Vitals affect rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 they are part of Google's ranking systems. But good scores do not guarantee top positions; the most relevant content can still rank with weak speed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a good LCP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2.5 seconds or less at the 75th percentile. Between 2.5 and 4 seconds needs improvement; over 4 seconds is poor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my layout shift?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually images, ads or embeds without reserved space. Give every image width and height and reserve space for anything that loads late."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </a>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="/" class="hover:text-cyan-400 transition">Mobile Test</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
+                <a href="/tools#guides" class="hover:text-cyan-400 transition">Guides</a>
+                <a href="/#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <!-- Intro -->
+        <div class="text-center animate-fade">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">Core Web Vitals Explained — LCP, INP &amp; CLS</h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">Core Web Vitals are the three metrics Google uses to judge how a page feels: how fast the main content shows up (LCP), how quickly it responds to a tap (INP), and whether the layout jumps while loading (CLS).</p>
+        </div>
+
+        <div class="bg-cyan-500/10 border border-cyan-500/30 p-6 rounded-2xl text-center">
+            <p class="text-slate-300 mb-3">Try it on your own site — free, no signup.</p>
+            <a href="/mobile-seo-checker" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">Mobile SEO Checker →</a>
+        </div>
+
+        <!-- LCP — Largest Contentful Paint -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">LCP — Largest Contentful Paint</h2>
+                <p>LCP measures how long the biggest visible element — usually a hero image or a headline — takes to appear. Good is 2.5 seconds or less, over 4 seconds is poor. Google measures it at the 75th percentile of real users, so a fast phone on good wifi does not hide a slow experience elsewhere.</p>
+                <p>Fix it by compressing the largest image and serving it at the right size, preloading it, and removing render-blocking scripts from the head. On most sites the hero image is the whole story.</p>
+        </section>
+        <!-- INP — Interaction to Next Paint -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">INP — Interaction to Next Paint</h2>
+                <p>INP measures how long a page takes to respond after a tap or click — opening a menu, pressing a button, typing in a field. Good is 200 milliseconds or less, over 500 ms is poor. It replaced First Input Delay in March 2024.</p>
+                <p>Fix it by breaking up long JavaScript tasks, deferring third-party scripts, and avoiding heavy work on the main thread. In lab tests Lighthouse shows Total Blocking Time instead, because nobody taps anything in a lab run.</p>
+        </section>
+        <!-- CLS — Cumulative Layout Shift -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">CLS — Cumulative Layout Shift</h2>
+                <p>CLS measures how much the layout jumps while a page loads — text moving down when an image arrives, a button shifting as a font loads. Good is 0.1 or less, over 0.25 is poor. It is the only Core Web Vital with no time unit: it is a score, not a duration.</p>
+                <p>Fix it by giving every image and video explicit width and height, reserving space for ads and embeds, and never inserting content above what the visitor is already reading.</p>
+        </section>
+        <!-- How to check your Core Web Vitals -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">How to check your Core Web Vitals</h2>
+                <p>Run our website speed test for a lab measurement with the exact numbers, or open Search Console → Core Web Vitals → Mobile for real-user data across your whole site. When lab and field disagree, trust the field data — that is the experience Google evaluates.</p>
+                <p>Check mobile separately from desktop: the mobile field data is what applies to mobile searches, which is where most traffic usually is.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Frequently asked questions</h2>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Do Core Web Vitals affect rankings?</h3>
+                <p class="text-slate-400 text-sm">Yes — they are part of Google's ranking systems. But good scores do not guarantee top positions; the most relevant content can still rank with weak speed.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">What is a good LCP?</h3>
+                <p class="text-slate-400 text-sm">2.5 seconds or less at the 75th percentile. Between 2.5 and 4 seconds needs improvement; over 4 seconds is poor.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Why does my layout shift?</h3>
+                <p class="text-slate-400 text-sm">Usually images, ads or embeds without reserved space. Give every image width and height and reserve space for anything that loads late.</p>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Related free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Website Speed Test</div>
+                <p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p>
+            </a>
+            <a href="/free-mobile-friendly-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+            </a>
+            <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div>
+                <p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p>
+            </a>
+            <a href="/how-to-check-mobile-friendly" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Check Mobile Friendliness</div>
+                <p class="text-slate-400 text-sm">4 free methods to check any site on mobile.</p>
+            </a>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">Free mobile friendliness and SEO tools to optimize your websites for modern search engines.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/" class="hover:text-cyan-400 transition">Mobile Friendly Test</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">More Tools</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/meta-tag-analyzer" class="hover:text-cyan-400 transition">Meta Tag Analyzer</a></li>
+                    <li><a href="/schema-markup-validator" class="hover:text-cyan-400 transition">Schema Markup Validator</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Guides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/google-mobile-friendly-test-retired" class="hover:text-cyan-400 transition">Google's Test Is Gone — What Now?</a></li>
+                    <li><a href="/what-is-mobile-first-indexing" class="hover:text-cyan-400 transition">What Is Mobile-First Indexing?</a></li>
+                    <li><a href="/how-to-check-mobile-friendly" class="hover:text-cyan-400 transition">How to Check Mobile Friendliness</a></li>
+                    <li><a href="/core-web-vitals-explained" class="hover:text-cyan-400 transition">Core Web Vitals Explained</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+</body>
+</html>

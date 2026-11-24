@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Mobile Friendliness Test Tool - Check Website Responsiveness Online</title>
+    <title>Mobile First Indexing Checker — Free Test in Seconds</title>
     <!-- Meta Descriptions & SEO Keywords -->
-    <meta name="description" content="Use our free mobile friendliness test tool to check website responsiveness online free. Fast mobile first indexing test tool and simple mobile friendliness checker code.">
+    <meta name="description" content="Free mobile friendliness checker — test any website for mobile friendly issues & mobile first indexing in seconds. Fast, free mobile friendly test, no signup.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/">
+    <meta property="og:title" content="Mobile First Indexing Checker — Free Test in Seconds">
+    <meta property="og:description" content="Free mobile friendliness checker — test any website for mobile friendly issues & mobile first indexing in seconds. Fast, free mobile friendly test, no signup.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Mobile First Indexing Checker — Free Test in Seconds">
+    <meta name="twitter:description" content="Free mobile friendliness checker — test any website for mobile friendly issues & mobile first indexing in seconds. Fast, free mobile friendly test, no signup.">
     
     <!-- Favicon (Inline SVG Data URI for instant loading) -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
@@ -46,6 +54,7 @@
             </div>
             <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
                 <a href="#tool" class="hover:text-cyan-400 transition">Tool</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
                 <a href="#features" class="hover:text-cyan-400 transition">Features</a>
                 <a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a>
                 <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
@@ -78,24 +87,14 @@
             <!-- Loader Indicator -->
             <div id="loading" class="hidden mt-8 text-center py-6">
                 <div class="inline-block w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                <p class="text-cyan-400 font-medium text-sm animate-pulse">Running viewport simulation & analyzing touch targets...</p>
+                <p class="text-cyan-400 font-medium text-sm animate-pulse">Running a real mobile check — fetching the page as a phone browser. Usually 3–5 seconds…</p>
             </div>
 
-            <!-- Results Panel -->
-            <div id="results" class="hidden mt-8 border-t border-slate-800 pt-6 animate-fade space-y-4">
-                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
-                    <span class="text-slate-300 font-medium">Viewport Configuration Tag</span>
-                    <span class="text-emerald-400 font-bold flex items-center gap-1.5">✓ Optimized</span>
-                </div>
-                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
-                    <span class="text-slate-300 font-medium">Touch Target Spacing</span>
-                    <span class="text-emerald-400 font-bold flex items-center gap-1.5">✓ Passed</span>
-                </div>
-                <div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800">
-                    <span class="text-slate-300 font-medium">Mobile Usability Health Score</span>
-                    <span class="text-cyan-400 font-extrabold text-xl">98 / 100</span>
-                </div>
-            </div>
+            <!-- Results Panel (filled by JavaScript with the real test result) -->
+            <div id="results" class="hidden mt-8 border-t border-slate-800 pt-6 animate-fade space-y-4"></div>
+
+            <!-- Google Lighthouse results (filled when the PageSpeed test finishes) -->
+            <div id="psiResults" class="hidden mt-6 space-y-4"></div>
         </div>
 
         <!-- Extra Feature Pages/Content Section -->
@@ -114,11 +113,27 @@
             </div>
         </section>
 
+        <!-- More Free Tools -->
+        <section id="more-tools" class="space-y-6">
+            <h2 class="text-2xl font-bold text-white">More free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div><p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p></a>
+                <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div><p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p></a>
+                <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Website Speed Test</div><p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p></a>
+                <a href="/robots-txt-tester" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Robots.txt Tester</div><p class="text-slate-400 text-sm">See any site&rsquo;s robots.txt rules &amp; whether Googlebot is blocked.</p></a>
+                <a href="/meta-tag-analyzer" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Meta Tag Analyzer</div><p class="text-slate-400 text-sm">Check any page&rsquo;s title, description &amp; social tags.</p></a>
+                <a href="/schema-markup-validator" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">Schema Markup Validator</div><p class="text-slate-400 text-sm">Validate any page&rsquo;s JSON-LD structured data.</p></a>
+                <a href="/http-status-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">HTTP Status Checker</div><p class="text-slate-400 text-sm">Follow any URL&rsquo;s redirect chain step by step.</p></a>
+                <a href="/ssl-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block"><div class="text-cyan-400 font-bold mb-1">SSL Checker</div><p class="text-slate-400 text-sm">Verify any site&rsquo;s HTTPS certificate &amp; expiry date.</p></a>
+            </div>
+            <p class="text-sm"><a href="/tools" class="text-cyan-400 hover:text-cyan-300 font-semibold">See all free tools &rarr;</a></p>
+        </section>
+
         <!-- SEO Content & Secondary Keywords Section -->
         <section id="guide" class="space-y-6 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
             <h2 class="text-2xl font-bold text-white mb-3">How to Check Website Responsiveness Online Free</h2>
             <p>
-                Ensuring your site passes mobile requirements is crucial for search engine visibility. If you are looking for a <span class="text-slate-200 font-medium">simple mobile friendliness checker code</span> or want to <span class="text-slate-200 font-medium">test mobile viewport size online</span>, our utility simulates different screen ratios to deliver clear technical suggestions.
+                Ensuring your site passes mobile requirements is crucial for search engine visibility. If you are looking for a <span class="text-slate-200 font-medium">simple mobile friendliness checker code</span> or want to <span class="text-slate-200 font-medium">test mobile viewport size online</span>, our tool fetches your page as a mobile browser and checks the real HTML — viewport tag, responsive CSS, font sizes and layout risks — to deliver clear technical suggestions.
             </p>
             <p>
                 Google prioritizes mobile-first indexing, meaning the mobile version of your layout acts as the primary baseline for ranking and indexing. Regular checks help eliminate layout shifts, oversized elements, and bad touch target configurations.
@@ -147,6 +162,7 @@
                 <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
                 <ul class="space-y-2 text-xs">
                     <li><a href="#tool" class="hover:text-cyan-400 transition">Test Tool</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
                     <li><a href="#features" class="hover:text-cyan-400 transition">Features</a></li>
                     <li><a href="#guide" class="hover:text-cyan-400 transition">SEO Guide</a></li>
                     <li><a href="#contact" class="hover:text-cyan-400 transition">Support</a></li>
@@ -155,10 +171,10 @@
             <div>
                 <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Resources</h4>
                 <ul class="space-y-2 text-xs">
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Viewport Simulators</span></li>
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Indexing Docs</span></li>
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Robots.txt Builder</span></li>
-                    <li><span class="hover:text-cyan-400 transition cursor-pointer">Sitemap Generator</span></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
                 </ul>
             </div>
             <div>
@@ -175,27 +191,186 @@
         </div>
     </footer>
 
-    <!-- Interactive JavaScript Logic -->
+    <!-- Interactive JavaScript Logic: real test via /api/check -->
     <script>
-        function runAnalysis() {
-            const url = document.getElementById('urlInput').value.trim();
-            const loading = document.getElementById('loading');
-            const results = document.getElementById('results');
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
 
-            if(!url) {
+        function checkRow(check) {
+            var icon = check.status === 'pass' ? '✓' : check.status === 'warn' ? '⚠' : check.status === 'not-tested' ? '–' : '✗';
+            var color = check.status === 'pass' ? 'text-emerald-400' : check.status === 'warn' ? 'text-amber-400' : check.status === 'not-tested' ? 'text-slate-400' : 'text-red-400';
+            var statusText = check.status === 'not-tested' ? 'NOT TESTED' : check.status.toUpperCase();
+            var weightText = check.weight ? ' · ' + check.weight + ' pts' : ' · not scored';
+            return '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">' +
+                '<div class="flex items-center justify-between gap-3">' +
+                '<span class="text-slate-300 font-medium">' + escapeHtml(check.label) + '<span class="text-slate-500 text-xs">' + weightText + '</span></span>' +
+                '<span class="' + color + ' font-bold flex items-center gap-1.5 shrink-0">' + icon + ' ' + statusText + '</span>' +
+                '</div>' +
+                '<p class="text-slate-500 text-sm mt-1">' + escapeHtml(check.detail) + '</p>' +
+                '</div>';
+        }
+
+        function renderResults(data) {
+            var results = document.getElementById('results');
+            var verdictColor = data.verdict === 'Mobile friendly' ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10'
+                : data.verdict === 'Needs work' ? 'text-amber-400 border-amber-500/40 bg-amber-500/10'
+                : 'text-red-400 border-red-500/40 bg-red-500/10';
+            var rows = data.checks.map(checkRow).join('');
+            results.innerHTML =
+                '<div class="flex items-center justify-between gap-3 p-4 rounded-xl border ' + verdictColor + '">' +
+                '<span class="font-bold text-lg">' + escapeHtml(data.verdict) + '</span>' +
+                '<span class="font-extrabold text-2xl">' + data.score + ' / 100</span>' +
+                '</div>' +
+                rows +
+                '<p class="text-slate-500 text-xs leading-relaxed">Tested live: ' + escapeHtml(data.url) +
+                ' · HTTP ' + data.status + ' · ' + (data.loadMs / 1000).toFixed(1) + 's to fetch · ' + data.htmlKb + ' KB HTML · ' +
+                data.counts.images + ' images, ' + data.counts.scripts + ' scripts, ' + data.counts.links + ' links. ' +
+                'Score = sum of passed checks (each row shows its weight; warn = half). Static HTML check — it reads the page code as a phone browser would; it does not run JavaScript. Tap targets and layout shift need a real browser render and are marked NOT TESTED.</p>';
+            results.classList.remove('hidden');
+        }
+
+        function showError(message) {
+            var results = document.getElementById('results');
+            results.innerHTML = '<div class="p-4 rounded-xl border border-red-500/40 bg-red-500/10 text-red-300 text-sm">' +
+                escapeHtml(message) + '</div>';
+            results.classList.remove('hidden');
+        }
+
+        // Google PageSpeed Insights API key (free, 25,000 tests/day).
+        // 1) Create a key at console.cloud.google.com (enable PageSpeed Insights API).
+        // 2) In Google Cloud Console, restrict the key: API restrictions -> only
+        //    "PageSpeed Insights API"; Application restrictions -> HTTP referrers ->
+        //    https://mobile-checker-seo-amd.vercel.app/*
+        // 3) Replace 'YOUR_PSI_API_KEY' below with the key. Until then the static
+        //    check above still works and the Lighthouse section stays hidden.
+        var PSI_API_KEY = 'YOUR_PSI_API_KEY';
+
+        function cwvColor(value, good, poor) {
+            if (value === null || value === undefined) return 'text-slate-400';
+            return value <= good ? 'text-emerald-400' : value <= poor ? 'text-amber-400' : 'text-red-400';
+        }
+
+        // Defensive parse: Lighthouse versions drop audits (e.g. font-size is gone
+        // in Lighthouse 13), so every field is optional and missing = "not checked".
+        function parsePsi(lr) {
+            var a = (lr && lr.audits) || {};
+            function audit(id) { return a[id] || null; }
+            function num(id) { var x = audit(id); return x && typeof x.numericValue === 'number' ? x.numericValue : null; }
+            function disp(id) { var x = audit(id); return x && x.displayValue ? x.displayValue : null; }
+            function scr(id) { var x = audit(id); return x && typeof x.score === 'number' ? x.score : null; }
+            var cats = (lr && lr.categories) || {};
+            function catScore(id) { return cats[id] && typeof cats[id].score === 'number' ? Math.round(cats[id].score * 100) : null; }
+            var shot = audit('final-screenshot');
+            var lcp = num('largest-contentful-paint');
+            var inp = num('interaction-to-next-paint');
+            var tbt = num('total-blocking-time');
+            var cls = audit('cumulative-layout-shift');
+            return {
+                scores: { performance: catScore('performance'), accessibility: catScore('accessibility'), bestPractices: catScore('best-practices'), seo: catScore('seo') },
+                lcp: lcp !== null ? { ms: lcp, display: disp('largest-contentful-paint') } : null,
+                inp: inp !== null ? { ms: inp, display: disp('interaction-to-next-paint'), lab: false } : (tbt !== null ? { ms: tbt, display: disp('total-blocking-time'), lab: true } : null),
+                cls: cls ? { value: typeof cls.numericValue === 'number' ? cls.numericValue : null, display: disp('cumulative-layout-shift') } : null,
+                viewport: scr('viewport'),
+                tapTargets: scr('tap-targets'),
+                fontSize: scr('font-size'),
+                screenshot: shot && shot.details && shot.details.data ? shot.details.data : null,
+                finalUrl: (lr && lr.finalUrl) || null
+            };
+        }
+
+        function scoreChip(label, value) {
+            if (value === null) return '';
+            var color = value >= 90 ? 'text-emerald-400' : value >= 50 ? 'text-amber-400' : 'text-red-400';
+            return '<div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800 text-center">' +
+                '<div class="text-xs text-slate-500 mb-1">' + label + '</div>' +
+                '<div class="' + color + ' font-extrabold text-xl">' + value + '</div></div>';
+        }
+
+        function renderPsi(p) {
+            var box = document.getElementById('psiResults');
+            var html = '<div class="border-t border-slate-800 pt-6 space-y-4">' +
+                '<h3 class="text-white font-bold text-lg">Google Lighthouse — PageSpeed Insights</h3>';
+            if (p.screenshot) {
+                html += '<div class="rounded-xl overflow-hidden border border-slate-800"><img src="' + p.screenshot + '" alt="Mobile screenshot of the tested page" class="w-full block"></div>';
+            }
+            var chips = scoreChip('Performance', p.scores.performance) + scoreChip('Accessibility', p.scores.accessibility) +
+                scoreChip('Best practices', p.scores.bestPractices) + scoreChip('SEO', p.scores.seo);
+            if (chips) html += '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">' + chips + '</div>';
+            var cwv = '';
+            if (p.lcp) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">LCP — largest content</div><div class="' + cwvColor(p.lcp.ms, 2500, 4000) + ' font-bold text-lg">' + escapeHtml(p.lcp.display || (p.lcp.ms / 1000).toFixed(1) + ' s') + '</div></div>';
+            if (p.inp) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">' + (p.inp.lab ? 'TBT — blocking time (lab)' : 'INP — interaction delay') + '</div><div class="' + cwvColor(p.inp.ms, 200, 500) + ' font-bold text-lg">' + escapeHtml(p.inp.display || p.inp.ms + ' ms') + '</div></div>';
+            if (p.cls && p.cls.value !== null) cwv += '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-500">CLS — layout shift</div><div class="' + cwvColor(p.cls.value, 0.1, 0.25) + ' font-bold text-lg">' + escapeHtml(p.cls.display || String(p.cls.value)) + '</div></div>';
+            if (cwv) html += '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' + cwv + '</div>';
+            var lh = '';
+            if (p.viewport !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Viewport (Lighthouse)</span><span class="' + (p.viewport === 1 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.viewport === 1 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (p.tapTargets !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Tap targets (Lighthouse)</span><span class="' + (p.tapTargets >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.tapTargets >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (p.fontSize !== null) lh += '<div class="flex items-center justify-between bg-slate-950/60 p-4 rounded-xl border border-slate-800"><span class="text-slate-300 font-medium">Font size (Lighthouse)</span><span class="' + (p.fontSize >= 0.9 ? 'text-emerald-400' : 'text-red-400') + ' font-bold">' + (p.fontSize >= 0.9 ? '✓ Passed' : '✗ Issue') + '</span></div>';
+            if (lh) html += lh;
+            html += '<p class="text-slate-500 text-xs leading-relaxed">Powered by Google PageSpeed Insights — Lighthouse run on Google servers with mobile emulation.</p></div>';
+            box.innerHTML = html;
+            box.classList.remove('hidden');
+        }
+
+        async function runPsiTest(url) {
+            var box = document.getElementById('psiResults');
+            box.innerHTML = '<p class="text-cyan-400 text-sm animate-pulse">Google Lighthouse test chal raha hai… (20–40 second lag sakte hain)</p>';
+            box.classList.remove('hidden');
+            try {
+                var api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed'
+                    + '?url=' + encodeURIComponent(url)
+                    + '&strategy=mobile'
+                    + '&category=performance&category=accessibility&category=best-practices&category=seo'
+                    + '&key=' + PSI_API_KEY;
+                var res = await fetch(api);
+                var data = await res.json();
+                if (!res.ok) throw new Error((data.error && data.error.message) || 'PageSpeed test failed');
+                renderPsi(parsePsi(data.lighthouseResult));
+            } catch (err) {
+                var msg = (err.message || '').indexOf('Quota') !== -1
+                    ? 'Google ki daily limit khatam ho gayi hai — kal phir try karein.'
+                    : 'Lighthouse test abhi nahi chal saka — thodi der baad try karein.';
+                box.innerHTML = '<p class="text-slate-500 text-xs leading-relaxed">Google Lighthouse test abhi available nahi hai (' + escapeHtml(msg) + '). Upar wala static result phir bhi sahi hai.</p>';
+            }
+        }
+
+        async function runAnalysis() {
+            var input = document.getElementById('urlInput');
+            var btn = document.getElementById('analyzeBtn');
+            var loading = document.getElementById('loading');
+            var results = document.getElementById('results');
+            var url = input.value.trim();
+            if (!url) {
                 alert('Please enter a valid target URL.');
                 return;
             }
-
-            // Reset view
+            if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+            try { new URL(url); } catch (e) {
+                alert('Please enter a valid URL, e.g. https://example.com');
+                return;
+            }
+            btn.disabled = true;
+            btn.textContent = 'Testing…';
+            btn.classList.add('opacity-60', 'cursor-not-allowed');
             results.classList.add('hidden');
+            results.innerHTML = '';
             loading.classList.remove('hidden');
-
-            // Simulate deep check delay
-            setTimeout(() => {
+            try {
+                var res = await fetch('/api/check?url=' + encodeURIComponent(url));
+                var data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'The test failed. Please try again.');
+                renderResults(data);
+                if (PSI_API_KEY && PSI_API_KEY !== 'YOUR_PSI_API_KEY') { runPsiTest(url); }
+            } catch (err) {
+                showError(err.message || 'The test failed. Please try again.');
+            } finally {
                 loading.classList.add('hidden');
-                results.classList.remove('hidden');
-            }, 1400);
+                btn.disabled = false;
+                btn.textContent = 'Analyze Now';
+                btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
         }
     </script>
 </body>

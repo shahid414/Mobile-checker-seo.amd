@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Mobile Friendly Test Is Gone — What to Use Now</title>
+    <meta name="description" content="Google retired its Mobile-Friendly Test in Dec 2023. Learn what replaced it — PageSpeed Insights, Lighthouse &amp; free tools — and how to test your site today.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/google-mobile-friendly-test-retired">
+    <meta property="og:title" content="Google Mobile Friendly Test Is Gone — What to Use Now">
+    <meta property="og:description" content="Google retired its Mobile-Friendly Test in Dec 2023. Learn what replaced it — PageSpeed Insights, Lighthouse &amp; free tools — and how to test your site today.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/google-mobile-friendly-test-retired">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Google Mobile Friendly Test Is Gone — What to Use Now">
+    <meta name="twitter:description" content="Google retired its Mobile-Friendly Test in Dec 2023. Learn what replaced it — PageSpeed Insights, Lighthouse &amp; free tools — and how to test your site today.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Google's Mobile Friendly Test Is Gone \u2014 What to Use Now",
+  "url": "https://mobile-checker-seo-amd.vercel.app/google-mobile-friendly-test-retired",
+  "datePublished": "2026-11-18",
+  "author": {
+    "@type": "Organization",
+    "name": "MobiCheck SEO"
+  },
+  "description": "Google retired its Mobile-Friendly Test in Dec 2023. Learn what replaced it \u2014 PageSpeed Insights, Lighthouse & free tools \u2014 and how to test your site today."
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Google's old Mobile-Friendly Test still exist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Google retired it, its API and the Search Console Mobile Usability report on December 1, 2023. The old address search.google.com/test/mobile-friendly returns nothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the closest replacement?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Google PageSpeed Insights on the Mobile tab, plus Lighthouse in Chrome DevTools for a deeper audit. Our free mobile friendly test covers the same core checks in one step."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does being mobile friendly affect rankings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Indirectly but strongly. Since July 2024 Google crawls every site with its smartphone crawler, so content missing on mobile does not exist for Google. Core Web Vitals are also part of its ranking systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I test?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After every design change and every new page template \u2014 and once a month on your top pages as a routine check."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </a>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="/" class="hover:text-cyan-400 transition">Mobile Test</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
+                <a href="/tools#guides" class="hover:text-cyan-400 transition">Guides</a>
+                <a href="/#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <!-- Intro -->
+        <div class="text-center animate-fade">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">Google's Mobile Friendly Test Is Gone — What to Use Now</h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">Google's free Mobile-Friendly Test — the page where you pasted a URL and got an instant pass or fail — has not existed since December 2023. Here is what replaced it, and how to test your site now.</p>
+        </div>
+
+        <div class="bg-cyan-500/10 border border-cyan-500/30 p-6 rounded-2xl text-center">
+            <p class="text-slate-300 mb-3">Try it on your own site — free, no signup.</p>
+            <a href="/mobile-first-indexing-checker" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">Mobile First Indexing Checker →</a>
+        </div>
+
+        <!-- Why Google retired its mobile friendly test -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">Why Google retired its mobile friendly test</h2>
+                <p>Google announced the shutdown in April 2023 and carried it out on December 1, 2023 — retiring the Mobile-Friendly Test, its API and the Mobile Usability report in Search Console at the same time. Its reasoning was simple: far better tools for evaluating mobile usability had appeared since the test first launched, with Chrome's Lighthouse named as the main one.</p>
+                <p>That does not mean mobile usability stopped mattering. Google's page experience documentation still asks whether content displays well on mobile devices — and points site owners to Lighthouse for the answer. The tool disappeared, but the standard stayed.</p>
+        </section>
+        <!-- What to use now: 4 free tools -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">What to use now: 4 free tools</h2>
+                <p>PageSpeed Insights is the quickest replacement: paste a URL, stay on the Mobile tab, and read the performance score plus Core Web Vitals. Lighthouse in Chrome DevTools goes deeper — open DevTools, pick the Lighthouse tab, choose Mobile, and run a full audit including accessibility and best practices.</p>
+                <p>Search Console's URL Inspection shows how Google itself sees your page through its smartphone crawler, with a screenshot and resource errors. And our free mobile friendly test gives you the same core checks — viewport, tap targets, font size and responsive CSS — in seconds, with no signup.</p>
+        </section>
+        <!-- The mobile friendly checklist -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">The mobile friendly checklist</h2>
+                <p>A page is mobile friendly when it has a viewport tag set to device width, text at least 16 pixels that reads without zooming, tap targets at least 24 by 24 pixels with enough spacing, no horizontal scrolling, and the same content on mobile as on desktop. Run through that list on your homepage first, then on your highest-traffic pages.</p>
+                <p>If a page fails, fix the viewport tag first — every other measurement depends on it. Then fix overflow, then tap targets, then speed. Test again after each fix: the fastest way to confirm a fix is to re-run the same test on the same URL.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Frequently asked questions</h2>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Does Google's old Mobile-Friendly Test still exist?</h3>
+                <p class="text-slate-400 text-sm">No. Google retired it, its API and the Search Console Mobile Usability report on December 1, 2023. The old address search.google.com/test/mobile-friendly returns nothing.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">What is the closest replacement?</h3>
+                <p class="text-slate-400 text-sm">Google PageSpeed Insights on the Mobile tab, plus Lighthouse in Chrome DevTools for a deeper audit. Our free mobile friendly test covers the same core checks in one step.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Does being mobile friendly affect rankings?</h3>
+                <p class="text-slate-400 text-sm">Indirectly but strongly. Since July 2024 Google crawls every site with its smartphone crawler, so content missing on mobile does not exist for Google. Core Web Vitals are also part of its ranking systems.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">How often should I test?</h3>
+                <p class="text-slate-400 text-sm">After every design change and every new page template — and once a month on your top pages as a routine check.</p>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Related free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/free-mobile-friendly-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+            </a>
+            <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Website Speed Test</div>
+                <p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p>
+            </a>
+            <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div>
+                <p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p>
+            </a>
+            <a href="/what-is-mobile-first-indexing" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing</div>
+                <p class="text-slate-400 text-sm">How Google's mobile-first indexing works, simply explained.</p>
+            </a>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">Free mobile friendliness and SEO tools to optimize your websites for modern search engines.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/" class="hover:text-cyan-400 transition">Mobile Friendly Test</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">More Tools</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/meta-tag-analyzer" class="hover:text-cyan-400 transition">Meta Tag Analyzer</a></li>
+                    <li><a href="/schema-markup-validator" class="hover:text-cyan-400 transition">Schema Markup Validator</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Guides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/google-mobile-friendly-test-retired" class="hover:text-cyan-400 transition">Google's Test Is Gone — What Now?</a></li>
+                    <li><a href="/what-is-mobile-first-indexing" class="hover:text-cyan-400 transition">What Is Mobile-First Indexing?</a></li>
+                    <li><a href="/how-to-check-mobile-friendly" class="hover:text-cyan-400 transition">How to Check Mobile Friendliness</a></li>
+                    <li><a href="/core-web-vitals-explained" class="hover:text-cyan-400 transition">Core Web Vitals Explained</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+</body>
+</html>

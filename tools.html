@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free SEO Tools — Mobile, Speed &amp; Site Checkers</title>
+    <meta name="description" content="Free SEO tools in one place — mobile friendly test, speed test, robots.txt tester, meta tag analyzer, SSL checker &amp; more. No signup needed, instant results.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/tools">
+    <meta property="og:title" content="Free SEO Tools — Mobile, Speed &amp; Site Checkers">
+    <meta property="og:description" content="Free SEO tools in one place — mobile friendly test, speed test, robots.txt tester, meta tag analyzer, SSL checker &amp; more. No signup needed, instant results.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/tools">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Free SEO Tools — Mobile, Speed &amp; Site Checkers">
+    <meta name="twitter:description" content="Free SEO tools in one place — mobile friendly test, speed test, robots.txt tester, meta tag analyzer, SSL checker &amp; more. No signup needed, instant results.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free SEO Tools",
+  "url": "https://mobile-checker-seo-amd.vercel.app/tools",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free SEO tools in one place \u2014 mobile friendly test, speed test, robots.txt tester, meta tag analyzer, SSL checker & more. No signup needed, instant results."
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are these tools really free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 every tool on this page is free with no signup and no account. Test as many pages as you like."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need an API key?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 except the Website Speed Test, which uses Google PageSpeed Insights. It works without a key for casual use; heavy use needs a free key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which tool should I run first?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the Free Mobile Friendly Test on your homepage, then the Mobile SEO Checker, then the Website Speed Test. Those three cover most mobile problems."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </a>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="/" class="hover:text-cyan-400 transition">Mobile Test</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
+                <a href="/tools#guides" class="hover:text-cyan-400 transition">Guides</a>
+                <a href="/#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <!-- Intro -->
+        <div class="text-center animate-fade">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">Free SEO Tools</h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">Every free tool on this site in one place — mobile friendliness, speed, robots.txt, meta tags, schema, SSL and more. Pick a tool, paste a URL, get a real answer in seconds. No signup, no account.</p>
+        </div>
+
+        <!-- All tools -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">All free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="/" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                    <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+                </a>
+                <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div>
+                    <p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p>
+                </a>
+                <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div>
+                    <p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p>
+                </a>
+                <a href="/free-mobile-friendly-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                    <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+                </a>
+                <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Website Speed Test</div>
+                    <p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p>
+                </a>
+                <a href="/robots-txt-tester" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Robots.txt Tester</div>
+                    <p class="text-slate-400 text-sm">See any site's robots.txt rules &amp; whether Googlebot is blocked.</p>
+                </a>
+                <a href="/meta-tag-analyzer" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Meta Tag Analyzer</div>
+                    <p class="text-slate-400 text-sm">Check any page's title, description &amp; social tags.</p>
+                </a>
+                <a href="/schema-markup-validator" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Schema Markup Validator</div>
+                    <p class="text-slate-400 text-sm">Validate any page's JSON-LD structured data.</p>
+                </a>
+                <a href="/http-status-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">HTTP Status Checker</div>
+                    <p class="text-slate-400 text-sm">Follow any URL's redirect chain step by step.</p>
+                </a>
+                <a href="/ssl-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">SSL Checker</div>
+                    <p class="text-slate-400 text-sm">Verify any site's HTTPS certificate &amp; expiry date.</p>
+                </a>
+                <a href="/canonical-tag-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Canonical Tag Checker</div>
+                    <p class="text-slate-400 text-sm">See any page's canonical URL &amp; catch mistakes.</p>
+                </a>
+                <a href="/heading-structure-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Heading Structure Checker</div>
+                    <p class="text-slate-400 text-sm">List any page's H1, H2 &amp; H3 headings.</p>
+                </a>
+                <a href="/image-alt-text-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Image Alt Text Checker</div>
+                    <p class="text-slate-400 text-sm">Find every image missing alt text on any page.</p>
+                </a>
+                <a href="/sitemap-validator" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Sitemap Validator</div>
+                    <p class="text-slate-400 text-sm">Check any sitemap.xml — valid, URLs &amp; lastmod dates.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Guides -->
+        <section id="guides" class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Guides</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a href="/google-mobile-friendly-test-retired" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Google's Test Is Gone</div>
+                    <p class="text-slate-400 text-sm">What replaced Google's retired Mobile-Friendly Test.</p>
+                </a>
+                <a href="/what-is-mobile-first-indexing" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing</div>
+                    <p class="text-slate-400 text-sm">How Google's mobile-first indexing works, simply explained.</p>
+                </a>
+                <a href="/how-to-check-mobile-friendly" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Check Mobile Friendliness</div>
+                    <p class="text-slate-400 text-sm">4 free methods to check any site on mobile.</p>
+                </a>
+                <a href="/core-web-vitals-explained" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Core Web Vitals</div>
+                    <p class="text-slate-400 text-sm">What LCP, INP &amp; CLS measure — and how to fix them.</p>
+                </a>
+                <a href="/mobile-seo-checklist" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                    <div class="text-cyan-400 font-bold mb-1">Mobile SEO Checklist</div>
+                    <p class="text-slate-400 text-sm">12 mobile SEO checks to run before your next audit.</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Frequently asked questions</h2>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Are these tools really free?</h3>
+                <p class="text-slate-400 text-sm">Yes — every tool on this page is free with no signup and no account. Test as many pages as you like.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Do I need an API key?</h3>
+                <p class="text-slate-400 text-sm">No — except the Website Speed Test, which uses Google PageSpeed Insights. It works without a key for casual use; heavy use needs a free key.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">Which tool should I run first?</h3>
+                <p class="text-slate-400 text-sm">Start with the Free Mobile Friendly Test on your homepage, then the Mobile SEO Checker, then the Website Speed Test. Those three cover most mobile problems.</p>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">Free mobile friendliness and SEO tools to optimize your websites for modern search engines.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/" class="hover:text-cyan-400 transition">Mobile Friendly Test</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">More Tools</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/meta-tag-analyzer" class="hover:text-cyan-400 transition">Meta Tag Analyzer</a></li>
+                    <li><a href="/schema-markup-validator" class="hover:text-cyan-400 transition">Schema Markup Validator</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Guides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/google-mobile-friendly-test-retired" class="hover:text-cyan-400 transition">Google's Test Is Gone — What Now?</a></li>
+                    <li><a href="/what-is-mobile-first-indexing" class="hover:text-cyan-400 transition">What Is Mobile-First Indexing?</a></li>
+                    <li><a href="/how-to-check-mobile-friendly" class="hover:text-cyan-400 transition">How to Check Mobile Friendliness</a></li>
+                    <li><a href="/core-web-vitals-explained" class="hover:text-cyan-400 transition">Core Web Vitals Explained</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+</body>
+</html>

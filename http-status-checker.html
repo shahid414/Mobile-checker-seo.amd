@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Status Checker — Free Redirect Check</title>
+    <meta name="description" content="Free HTTP status checker — follow any URL's redirect chain step by step, see every status code, and find redirect loops in seconds. No signup. — one quick test.">
+    <link rel="canonical" href="https://mobile-checker-seo-amd.vercel.app/http-status-checker">
+    <meta property="og:title" content="HTTP Status Checker — Free Redirect Check">
+    <meta property="og:description" content="Free HTTP status checker — follow any URL's redirect chain step by step, see every status code, and find redirect loops in seconds. No signup. — one quick test.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mobile-checker-seo-amd.vercel.app/http-status-checker">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="HTTP Status Checker — Free Redirect Check">
+    <meta name="twitter:description" content="Free HTTP status checker — follow any URL's redirect chain step by step, see every status code, and find redirect loops in seconds. No signup. — one quick test.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2822 211 238'><path d='M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z'/></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(6, 182, 212, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.5); }
+        }
+        .animate-fade {
+            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .glow-box {
+            animation: pulseGlow 4s infinite;
+        }
+    </style>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "HTTP Status Checker",
+  "url": "https://mobile-checker-seo-amd.vercel.app/http-status-checker",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free HTTP status checker \u2014 follow any URL's redirect chain step by step, see every status code, and find redirect loops in seconds. No signup. \u2014 one quick test."
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a redirect loop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When URL A redirects to B and B redirects back to A \u2014 the browser gives up and shows an error. This checker flags loops immediately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "301 or 302 \u2014 which should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "301 for permanent moves, 302 for temporary ones. A 301 passes nearly all ranking value; a 302 passes less."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many redirects are too many?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "More than one hop is wasteful. Google follows up to 10, but users and crawlers both prefer a single direct redirect."
+      }
+    }
+  ]
+}
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-200 min-h-screen flex flex-col">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800/80 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+                </svg>
+                <span class="font-bold text-xl tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">MobiCheck SEO</span>
+            </a>
+            <nav class="hidden sm:flex gap-6 text-sm text-slate-400">
+                <a href="/" class="hover:text-cyan-400 transition">Mobile Test</a>
+                <a href="/tools" class="hover:text-cyan-400 transition">All Tools</a>
+                <a href="/tools#guides" class="hover:text-cyan-400 transition">Guides</a>
+                <a href="/#contact" class="hover:text-cyan-400 transition">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto px-6 py-12 flex-grow w-full space-y-12">
+        <!-- Intro -->
+        <div class="text-center animate-fade">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">HTTP Status Checker</h1>
+            <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto">Check any URL's HTTP status and follow its redirect chain step by step. See every hop, every status code, and catch redirect loops before your visitors do.</p>
+        </div>
+
+        <!-- Tool -->
+        <div id="tool" class="bg-slate-900/80 backdrop-blur border border-slate-800 p-8 rounded-2xl shadow-2xl glow-box animate-fade">
+            <label for="urlInput" class="block text-sm font-medium text-slate-400 mb-2">Target Website URL</label>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="urlInput" placeholder="https://example.com" class="flex-grow bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 transition">
+                <button onclick="runTool('/api/status')" id="analyzeBtn" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-8 py-3 rounded-lg transition shadow-lg shadow-cyan-500/20">Check Status</button>
+            </div>
+            <div id="loading" class="hidden mt-6 text-center">
+                <p class="text-cyan-400 text-sm animate-pulse">Following the redirect chain…</p>
+            </div>
+            <div id="results" class="hidden mt-8 space-y-3"></div>
+        </div>
+
+        <!-- How to use -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">How to use</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 1</div>
+                    <div class="text-white font-semibold">Enter the URL</div>
+                    <p class="text-slate-400 text-sm mt-1">Paste any URL, including old or shortened links.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 2</div>
+                    <div class="text-white font-semibold">Press Check Status</div>
+                    <p class="text-slate-400 text-sm mt-1">Our server follows the redirects one hop at a time.</p>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                    <div class="text-cyan-400 font-bold text-lg mb-1">Step 3</div>
+                    <div class="text-white font-semibold">Read the chain</div>
+                    <p class="text-slate-400 text-sm mt-1">Every hop shows its URL, status code and time — loops are flagged.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guide -->
+        <section class="space-y-4 text-slate-400 text-sm sm:text-base leading-relaxed bg-slate-900/40 p-8 rounded-2xl border border-slate-800/60">
+            <h2 class="text-2xl font-bold text-white">What do HTTP status codes mean?</h2>
+                <p>A 200 means the page loaded fine. A 301 is a permanent redirect and 302 is temporary — both send visitors and search engines to a new URL. A 404 means the page does not exist, and a 500 means the server failed.</p>
+                <p>Chains matter: every extra redirect hop slows the page and leaks ranking value. A chain of three or more redirects should be shortened to a single 301 from the old URL straight to the final one.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Frequently asked questions</h2>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">What is a redirect loop?</h3>
+                <p class="text-slate-400 text-sm">When URL A redirects to B and B redirects back to A — the browser gives up and shows an error. This checker flags loops immediately.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">301 or 302 — which should I use?</h3>
+                <p class="text-slate-400 text-sm">301 for permanent moves, 302 for temporary ones. A 301 passes nearly all ranking value; a 302 passes less.</p>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl">
+                <h3 class="text-white font-semibold mb-1">How many redirects are too many?</h3>
+                <p class="text-slate-400 text-sm">More than one hop is wasteful. Google follows up to 10, but users and crawlers both prefer a single direct redirect.</p>
+            </div>
+        </section>
+
+        <!-- Related tools -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-bold text-white">Related free tools</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="/mobile-first-indexing-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile-First Indexing Checker</div>
+                <p class="text-slate-400 text-sm">Compare what mobile &amp; desktop Googlebot get from any page.</p>
+            </a>
+            <a href="/mobile-seo-checker" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Mobile SEO Checker</div>
+                <p class="text-slate-400 text-sm">Audit any page for mobile SEO in one quick test.</p>
+            </a>
+            <a href="/free-mobile-friendly-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Free Mobile Friendly Test</div>
+                <p class="text-slate-400 text-sm">Test any website for mobile friendliness — free, no signup.</p>
+            </a>
+            <a href="/website-speed-test" class="bg-slate-900/50 border border-slate-800/80 p-5 rounded-2xl hover:border-cyan-500/50 transition block">
+                <div class="text-cyan-400 font-bold mb-1">Website Speed Test</div>
+                <p class="text-slate-400 text-sm">Check mobile performance &amp; Core Web Vitals with Lighthouse.</p>
+            </a>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400 text-sm mt-12">
+        <div class="max-w-5xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <div class="flex items-center gap-2 text-white font-bold text-lg">
+                    <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18" stroke-width="3"/></svg>
+                    MobiCheck SEO
+                </div>
+                <p class="text-xs text-slate-500">Free mobile friendliness and SEO tools to optimize your websites for modern search engines.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Quick Links</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/" class="hover:text-cyan-400 transition">Mobile Friendly Test</a></li>
+                    <li><a href="/tools" class="hover:text-cyan-400 transition">All Free Tools</a></li>
+                    <li><a href="/mobile-first-indexing-checker" class="hover:text-cyan-400 transition">Mobile-First Indexing Checker</a></li>
+                    <li><a href="/website-speed-test" class="hover:text-cyan-400 transition">Website Speed Test</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">More Tools</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/robots-txt-tester" class="hover:text-cyan-400 transition">Robots.txt Tester</a></li>
+                    <li><a href="/meta-tag-analyzer" class="hover:text-cyan-400 transition">Meta Tag Analyzer</a></li>
+                    <li><a href="/schema-markup-validator" class="hover:text-cyan-400 transition">Schema Markup Validator</a></li>
+                    <li><a href="/sitemap-validator" class="hover:text-cyan-400 transition">Sitemap Validator</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-3 text-sm tracking-wider uppercase">Guides</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="/google-mobile-friendly-test-retired" class="hover:text-cyan-400 transition">Google's Test Is Gone — What Now?</a></li>
+                    <li><a href="/what-is-mobile-first-indexing" class="hover:text-cyan-400 transition">What Is Mobile-First Indexing?</a></li>
+                    <li><a href="/how-to-check-mobile-friendly" class="hover:text-cyan-400 transition">How to Check Mobile Friendliness</a></li>
+                    <li><a href="/core-web-vitals-explained" class="hover:text-cyan-400 transition">Core Web Vitals Explained</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-slate-900 py-6 text-center text-slate-600 text-xs">
+            <p>&copy; 2026 MobiCheck SEO. All rights reserved. Built for webmasters and developers.</p>
+        </div>
+    </footer>
+    <!-- Interactive JavaScript Logic -->
+    <script>
+
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        function rowHtml(label, detail, status) {
+            var icon = status === 'pass' ? '✓' : status === 'warn' ? '⚠' : status === 'fail' ? '✗' : '•';
+            var color = status === 'pass' ? 'text-emerald-400' : status === 'warn' ? 'text-amber-400' : status === 'fail' ? 'text-red-400' : 'text-slate-400';
+            return '<div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800"><div class="flex items-center justify-between gap-3"><span class="text-slate-300 font-medium">' + escapeHtml(label) + '</span><span class="' + color + ' font-bold shrink-0">' + icon + '</span></div><p class="text-slate-500 text-sm mt-1">' + escapeHtml(detail) + '</p></div>';
+        }
+
+        function verdictHtml(verdict, score) {
+            var color = score >= 80 ? 'text-emerald-400 border-emerald-500/40 bg-emerald-500/10' : score >= 50 ? 'text-amber-400 border-amber-500/40 bg-amber-500/10' : 'text-red-400 border-red-500/40 bg-red-500/10';
+            return '<div class="flex items-center justify-between gap-3 p-4 rounded-xl border ' + color + '"><span class="font-bold text-lg">' + escapeHtml(verdict) + '</span><span class="font-extrabold text-2xl">' + score + ' / 100</span></div>';
+        }
+
+        async function runTool(endpoint) {
+            var input = document.getElementById('urlInput');
+            var btn = document.getElementById('analyzeBtn');
+            var loading = document.getElementById('loading');
+            var results = document.getElementById('results');
+            var url = input.value.trim();
+            if (!url) { alert('Please enter a valid target URL.'); return; }
+            if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+            try { new URL(url); } catch (e) { alert('Please enter a valid URL, e.g. https://example.com'); return; }
+            btn.disabled = true;
+            btn.textContent = 'Checking…';
+            btn.classList.add('opacity-60', 'cursor-not-allowed');
+            results.classList.add('hidden');
+            results.innerHTML = '';
+            loading.classList.remove('hidden');
+            try {
+                var res = await fetch(endpoint + '?url=' + encodeURIComponent(url));
+                var data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'The check failed. Please try again.');
+                renderResults(data);
+            } catch (err) {
+                results.innerHTML = '<div class="p-4 rounded-xl border border-red-500/40 bg-red-500/10 text-red-300 text-sm">' + escapeHtml(err.message || 'The check failed. Please try again.') + '</div>';
+                results.classList.remove('hidden');
+            } finally {
+                loading.classList.add('hidden');
+                btn.disabled = false;
+                btn.textContent = BTN_LABEL;
+                btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        }
+
+        var BTN_LABEL = 'Check Status';
+
+        function renderResults(data) {
+            var results = document.getElementById('results');
+            var score = data.ok ? (data.redirected ? 90 : 100) : 0;
+            var verdict = data.ok ? (data.redirected ? 'Reached — with redirects' : 'Reached OK') : 'Page not reached';
+            var html = verdictHtml(verdict, score);
+            data.hops.forEach(function (h, i) {
+                var detail = 'HTTP ' + (h.status === null ? '—' : h.status) + ' · ' + h.ms + 'ms' + (h.location ? ' → redirects to ' + h.location : '') + (h.note ? ' — ' + h.note : '');
+                html += rowHtml('Hop ' + (i + 1) + ': ' + h.url, detail, h.status !== null && h.status >= 200 && h.status < 300 ? 'pass' : h.status !== null && h.status >= 300 && h.status < 400 ? 'warn' : 'fail');
+            });
+            html += '<p class="text-slate-500 text-xs leading-relaxed">Total time: ' + data.totalMs + 'ms · ' + data.hopCount + ' hop(s).' + (data.redirected ? ' Shorten chains to a single 301 redirect where possible.' : '') + '</p>';
+            results.innerHTML = html;
+            results.classList.remove('hidden');
+        }
+
+    </script>
+</body>
+</html>
