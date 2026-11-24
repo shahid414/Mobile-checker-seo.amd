@@ -45,6 +45,30 @@ function countMatches(text, regex) {
   return m ? m.length : 0;
 }
 
+// Short cleaned context around each regex match, so results can show WHERE
+// a problem is (e.g. which rule sets a 9px font or a 1200px width).
+function findContexts(html, regex, limit) {
+  const out = [];
+  for (const m of html.matchAll(regex)) {
+    if (out.length >= limit) break;
+    const start = Math.max(0, m.index - 60);
+    let ctx = html.slice(start, m.index + m[0].length + 10).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (ctx.length > 110) ctx = '…' + ctx.slice(-110);
+    if (ctx) out.push(ctx);
+  }
+  return out;
+}
+
+// Count of each distinct value found by a capture-group regex, e.g. font sizes.
+function valueCounts(html, regex) {
+  const counts = {};
+  for (const m of html.matchAll(regex)) {
+    const v = m[1];
+    counts[v] = (counts[v] || 0) + 1;
+  }
+  return counts;
+}
+
 // Resolve up to 3 linked stylesheets and count @media rules inside them.
 async function countCssMediaQueries(html, baseUrl) {
   let total = 0;
@@ -103,36 +127,94 @@ function buildChecks(html, mobileFinalUrl, desktopFinalUrl) {
 
   // 4. Font sizes (weight 15)
   const pxSizes = [...html.matchAll(/font-size\s*:\s*([0-9]+(?:\.[0-9]+)?)\s*px/gi)].map((m) => parseFloat(m[1]));
+  // Distribution of the small sizes, so the result names each one, not just the smallest.
+  const smallCounts = valueCounts(html, /font-size\s*:\s*([0-9]+(?:\.[0-9]+)?)\s*px/gi);
+  const smallList = Object.keys(smallCounts)
+    .map((k) => parseFloat(k))
+    .filter((n) => n < 16)
+    .sort((a, b) => a - b)
+    .map((n) => n + 'px ×' + smallCounts[String(n)]);
+  const smallContexts = findContexts(html, /font-size\s*:\s*(?:[0-9]|1[0-5])(?:\.[0-9]+)?\s*px/gi, 3);
+  const fontFindings = [];
+  if (smallList.length > 0) fontFindings.push('Small sizes found: ' + smallList.join(', '));
+  for (const c of smallContexts) fontFindings.push(c);
   if (pxSizes.length === 0) {
     checks.push({ id: 'font', label: 'Font size', status: 'pass', detail: 'No tiny fixed pixel font sizes found in the page code (sizes use rem/em or are set elsewhere).' });
   } else {
     const smallest = Math.min(...pxSizes);
     if (smallest < 12) {
-      checks.push({ id: 'font', label: 'Font size', status: 'fail', detail: 'Text as small as ' + smallest + 'px found — too small to read on a phone without zooming.' });
+      checks.push({ id: 'font', label: 'Font size', status: 'fail', detail: 'Text as small as ' + smallest + 'px found — too small to read on a phone without zooming.', findings: fontFindings });
     } else if (smallest < 16) {
-      checks.push({ id: 'font', label: 'Font size', status: 'warn', detail: 'Smallest text found is ' + smallest + 'px — readable, but 16px or larger is safer on phones.' });
+      checks.push({ id: 'font', label: 'Font size', status: 'warn', detail: 'Smallest text found is ' + smallest + 'px — readable, but 16px or larger is safer on phones.', findings: fontFindings });
     } else {
       checks.push({ id: 'font', label: 'Font size', status: 'pass', detail: 'Smallest text found is ' + smallest + 'px — readable without zooming.' });
     }
   }
 
   // 5. Fixed-width layout risk / horizontal scroll (weight 15)
-  const fixedWidth = /(?:width|min-width)\s*:\s*(?:9[0-9]{2}|1[0-9]{3,})\s*px/i.test(html);
-  if (fixedWidth) {
-    checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'fail', detail: 'Fixed widths of 900px or more found in the code — content can spill off a phone screen.' });
+  // Scan declaration blocks only: strip @media(...) conditions first so a
+  // breakpoint like min-width:1024px is not mistaken for an element width,
+  // and ignore max-width (a cap, not a forced width — it is responsive-safe).
+  const declHtml = html.replace(/@media[^{]+\{/gi, '@media{');
+  const wideMatches = [...declHtml.matchAll(/(?:^|[^-])((?:width|min-width)\s*:\s*(?:9[0-9]{2}|1[0-9]{3,})\s*px)/gi)];
+  const nowrapCount = countMatches(html, /white-space\s*:\s*nowrap/gi);
+  const fixedFindings = [];
+  if (wideMatches.length > 0) {
+    fixedFindings.push(wideMatches.length + ' wide fixed-width rule' + (wideMatches.length === 1 ? '' : 's') + ' found (900px or more)');
+    for (const c of findContexts(declHtml, /(?:^|[^-])((?:width|min-width)\s*:\s*(?:9[0-9]{2}|1[0-9]{3,})\s*px)/gi, 5)) fixedFindings.push(c);
+  }
+  if (nowrapCount > 0) fixedFindings.push(nowrapCount + ' white-space: nowrap rule' + (nowrapCount === 1 ? '' : 's') + ' — text that cannot wrap can also spill off-screen');
+  if (wideMatches.length > 0) {
+    checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'fail', detail: 'Fixed widths of 900px or more found in the code — content can spill off a phone screen.', findings: fixedFindings });
   } else {
-    checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'pass', detail: 'No wide fixed widths found in the page code.' });
+    checks.push({ id: 'fixed', label: 'Horizontal scroll risk', status: 'pass', detail: 'No wide fixed widths found in the page code.', findings: fixedFindings });
   }
 
   // 6. Title + H1 (weight 10)
-  const hasTitle = /<title[^>]*>[^<]{3,}<\/title>/i.test(html);
-  const hasH1 = /<h1[\s>]/i.test(html);
+  const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i);
+  const titleText = titleMatch ? titleMatch[1].trim().replace(/\s+/g, ' ') : '';
+  const h1Matches = [...html.matchAll(/<h1[\s>][\s\S]*?<\/h1>/gi)].map((m) => m[0].replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim());
+  const hasTitle = titleText.length >= 3;
+  const hasH1 = h1Matches.length > 0;
+  const seoFindings = [];
+  if (titleText) seoFindings.push('Title (' + titleText.length + ' chars): "' + titleText.slice(0, 90) + (titleText.length > 90 ? '…' : '') + '"');
+  if (h1Matches.length > 0) seoFindings.push(h1Matches.length + ' H1 heading' + (h1Matches.length === 1 ? '' : 's') + ' found' + (h1Matches.length > 1 ? ' — a page should have exactly one' : '') + ': "' + h1Matches[0].slice(0, 90) + (h1Matches[0].length > 90 ? '…' : '') + '"');
   if (hasTitle && hasH1) {
-    checks.push({ id: 'seo', label: 'Title & H1 present', status: 'pass', detail: 'The page has both a title and an H1 heading.' });
+    checks.push({ id: 'seo', label: 'Title & H1 present', status: h1Matches.length > 1 ? 'warn' : 'pass', detail: h1Matches.length > 1 ? 'The page has a title and H1, but more than one H1 heading.' : 'The page has both a title and an H1 heading.', findings: seoFindings });
   } else if (hasTitle || hasH1) {
-    checks.push({ id: 'seo', label: 'Title & H1 present', status: 'warn', detail: hasTitle ? 'Title found, but no H1 heading.' : 'H1 found, but no title tag.' });
+    checks.push({ id: 'seo', label: 'Title & H1 present', status: 'warn', detail: hasTitle ? 'Title found, but no H1 heading.' : 'H1 found, but no title tag.', findings: seoFindings });
   } else {
     checks.push({ id: 'seo', label: 'Title & H1 present', status: 'fail', detail: 'Neither a title tag nor an H1 heading was found.' });
+  }
+
+  // 7b. Images without dimensions — layout shift risk (info, not scored)
+  const imgTags = [...html.matchAll(/<img[^>]*>/gi)].map((m) => m[0]);
+  const noDimImgs = imgTags.filter((t) => !/\swidth\s*=|\sheight\s*=/.test(t));
+  if (imgTags.length > 0) {
+    const imgFindings = [];
+    for (const t of noDimImgs.slice(0, 3)) {
+      const src = (t.match(/(?:data-src|src)=["']([^"']*)["']/i) || [])[1];
+      if (src) imgFindings.push(src.length > 90 ? '…' + src.slice(-90) : src);
+    }
+    checks.push({ id: 'imgdim', label: 'Images without dimensions', status: noDimImgs.length > 0 ? 'warn' : 'pass', detail: noDimImgs.length > 0 ? noDimImgs.length + ' of ' + imgTags.length + ' images have no width/height — the page can jump while images load (layout shift).' : 'All ' + imgTags.length + ' images state their width and height.', findings: imgFindings });
+  }
+
+  // 7c. Images without alt text (info, not scored)
+  if (imgTags.length > 0) {
+    const noAlt = imgTags.filter((t) => !/\salt\s*=/.test(t)).length;
+    checks.push({ id: 'alt', label: 'Images without alt text', status: noAlt > 0 ? 'warn' : 'pass', detail: noAlt > 0 ? noAlt + ' of ' + imgTags.length + ' images have no alt text — screen readers and search engines cannot describe them.' : 'All ' + imgTags.length + ' images have alt text.' });
+  }
+
+  // 7d. Wide tables and fixed-size embeds (info, not scored)
+  const tableCount = countMatches(html, /<table[\s>]/gi);
+  const wideEmbeds = [...html.matchAll(/<(iframe|embed|video)[^>]*\swidth=["']?(\d+)/gi)].filter((m) => parseInt(m[2], 10) >= 600);
+  const embedFindings = wideEmbeds.slice(0, 3).map((m) => '<' + m[1] + '> with width ' + m[2] + 'px');
+  if (wideEmbeds.length > 0) {
+    checks.push({ id: 'embeds', label: 'Wide tables & fixed embeds', status: 'fail', detail: wideEmbeds.length + ' embedded element' + (wideEmbeds.length === 1 ? '' : 's') + ' (iframe/video) fixed at 600px or wider — they can overflow a phone screen.', findings: embedFindings });
+  } else if (tableCount > 0) {
+    checks.push({ id: 'embeds', label: 'Wide tables & fixed embeds', status: 'warn', detail: tableCount + ' table' + (tableCount === 1 ? '' : 's') + ' found — check they scroll sideways or stack on phones instead of overflowing.' });
+  } else {
+    checks.push({ id: 'embeds', label: 'Wide tables & fixed embeds', status: 'pass', detail: 'No tables or wide fixed embeds found.' });
   }
 
   // 7. Separate mobile site? (info only, not scored)
@@ -215,6 +297,12 @@ module.exports = async (req, res) => {
   }
   const totalMedia = inlineMedia + cssMedia;
   const mediaCheck = checks.find((c) => c.id === 'media');
+  // Distinct breakpoints used in @media rules only, so the result names them.
+  const bpSet = new Set();
+  for (const m of html.matchAll(/@media[^{]*\((?:max|min)-width\s*:\s*(\d+)\s*px/gi)) bpSet.add(parseInt(m[1], 10));
+  const bps = [...bpSet].sort((a, b) => a - b);
+  mediaCheck.findings = [];
+  if (bps.length > 0) mediaCheck.findings.push('Breakpoints used in the page: ' + bps.map((b) => b + 'px').join(', '));
   if (totalMedia > 0) {
     mediaCheck.status = 'pass';
     mediaCheck.detail = totalMedia + ' media quer' + (totalMedia === 1 ? 'y' : 'ies') + ' found (' + inlineMedia + ' in the page, ' + cssMedia + ' in stylesheets) — the layout adapts to screen sizes.';

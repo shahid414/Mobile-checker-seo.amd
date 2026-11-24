@@ -254,12 +254,20 @@
             var color = check.status === 'pass' ? 'text-emerald-400' : check.status === 'warn' ? 'text-amber-400' : check.status === 'not-tested' ? 'text-[#A6A4A6]' : 'text-red-400';
             var statusText = check.status === 'not-tested' ? 'NOT TESTED' : check.status.toUpperCase();
             var weightText = check.weight ? ' · ' + check.weight + ' pts' : ' · not scored';
+            var findingsHtml = '';
+            if (check.findings && check.findings.length) {
+                var shown = check.findings.slice(0, 5);
+                findingsHtml = '<ul class="text-[#A6A4A6] text-xs mt-2 space-y-1 list-disc pl-5">' +
+                    shown.map(function (f) { return '<li><code class="text-[#D4D4D4] break-all">' + escapeHtml(f) + '</code></li>'; }).join('') +
+                    (check.findings.length > 5 ? '<li class="text-[#7A7A7A]">+ ' + (check.findings.length - 5) + ' more</li>' : '') + '</ul>';
+            }
             return '<div class="bg-[#0D0D0D] p-4 rounded-xl border border-[#252525]">' +
                 '<div class="flex items-center justify-between gap-3">' +
                 '<span class="text-[#D4D4D4] font-medium">' + escapeHtml(check.label) + '<span class="text-[#7A7A7A] text-xs">' + weightText + '</span></span>' +
                 '<span class="' + color + ' font-bold flex items-center gap-1.5 shrink-0">' + icon + ' ' + statusText + '</span>' +
                 '</div>' +
                 '<p class="text-[#7A7A7A] text-sm mt-1">' + escapeHtml(check.detail) + '</p>' +
+                findingsHtml +
                 '</div>';
         }
 
